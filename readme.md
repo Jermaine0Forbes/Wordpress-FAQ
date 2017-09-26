@@ -1,7 +1,9 @@
 # wordpress reference
 
 [how to add css files][css]
+
 [how to  create a child theme][child]
+
 [how to install wordpress][install]
 
 [home]:#wordpress-reference
@@ -25,7 +27,7 @@
 [go back home][home]
 
 
-### how to install wordpress 
+### how to install wordpress
 
 ```
 

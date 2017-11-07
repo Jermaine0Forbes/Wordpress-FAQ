@@ -1,17 +1,55 @@
-# wordpress reference
+# Wordpress Reference
 
-[how to add css files][css]
+[how to allow installation of plugins/themes][allow-install]
+
+[how to add css/js files][css]
 
 [how to  create a child theme][child]
 
 [how to install wordpress][install]
 
-[home]:#wordpress-reference
-[css]:#how-to-add-css-files
+[how to customize a sidebar][sidebar]
+
+[allow-install]:#how-to-allow-installation-of-plugins/themes
+[home]:#Wordpress-Reference
+[css]:#how-to-add-css/js-files
 [child]:#how-to-create-a-child-theme
 [install]:#how-to-install-wordpress
 
-### how to add css files
+### how to allow installation of plugins/themes
+
+**reference**
+- [How do I enable Wordpress to update itself through its back end?][https://www.digitalocean.com/community/questions/how-do-i-enable-wordpress-to-update-itself-through-its-back-end]
+
+#### Option 1
+
+you can either write this in the terminal
+
+```
+ sudo chown www-data:www-data ./
+```
+
+#### Option 2
+
+second option is to change the group to www-data and give permissions to them,
+and then add FS_METHOD
+
+```
+// in terminal
+sudo chgrp -R www-data /var/www/sitename.com
+sudo chmod -R g+w /var/www/sitename.com
+find /var/www/sitename.com -type d -exec chmod g+s {} \;
+```
+
+```
+// in wp-config.php add this
+
+define( 'FS_METHOD', 'direct' );
+```
+
+[go back home][home]
+
+### how to add css/js files
 
 **reference**
 - [enqueue scripts](https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts)
@@ -41,7 +79,7 @@ function my_theme_enqueue_styles() {
 // copy the style header that looks like this
 
 /*
-Theme Name: Twenty Seventeen Child
+Theme Name: Twenty Seventeen
 Theme URI: https://wordpress.org/themes/twentyseventeen/
 Author: the WordPress team
 Author URI: https://wordpress.org/

@@ -10,6 +10,54 @@
 
 [how to customize a sidebar][sidebar]
 
+## things to make tutorials about
+- [wp_enqueue_style](https://developer.wordpress.org/reference/functions/wp_enqueue_style/)
+
+## Wordpress Functions and Questions
+[The proper way to add styles and scripts in the frontend](https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts)
+- [wp_enqueue_style(id name, deps, src, version, media)](https://developer.wordpress.org/reference/functions/wp_enqueue_style/)
+- [wp_enqueue_script(id name,deps,src,version, in footer)](https://developer.wordpress.org/reference/functions/wp_enqueue_script/)
+
+[How to check if you are on a certain page](https://developer.wordpress.org/reference/functions/is_page/)
+- `is_page( int|string|array $page = '' )`
+
+[How to check if you are on  home page](https://developer.wordpress.org/reference/functions/is_home/)
+- `is_home()`
+
+[How to check if you are on front page](https://codex.wordpress.org/Function_Reference/is_front_page)
+- `is_front_page()`
+
+[How to include files/templates in wordpress](https://konstantin.blog/2013/get_template_part/)
+- [get_template_part( string $slug, string $name = null )](https://developer.wordpress.org/reference/functions/get_template_part/)
+
+[How to create a child theme](https://codex.wordpress.org/Child_Themes)
+
+[What is the Template Hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/)
+
+[How to use add_action and do_action](https://developer.wordpress.org/reference/functions/add_action/)
+- [second reference](http://frumph.net/2010/06/14/understanding-do_action-and-add_action/)
+- [third reference](http://wordpress.stackexchange.com/questions/99952/best-practice-way-to-implement-custom-sections-into-a-wordpress-theme/99958#99958)
+
+[How to get src of  feature imaged post](https://codex.wordpress.org/Function_Reference/the_post_thumbnail_url)
+
+[The List of WP_Query arguments](http://www.billerickson.net/code/wp_query-arguments/)
+
+[How to get the parent category of a child category while looping through $query->have_posts()](http://www.wpbeginner.com/wp-themes/how-to-display-only-parent-category-in-your-wordpress-post-loop/)
+
+[How to get all posts from category](http://wordpress.stackexchange.com/questions/4201/how-to-query-posts-by-category-and-tag)
+
+[Template Tags to use for your blog template OR while looping through a post](https://codex.wordpress.org/Template_Tags)
+
+[How to turn on wordpress debug messages](https://codex.wordpress.org/Debugging_in_WordPress)
+
+[How to remove “Powered by Wordpress” in footer](http://www.wpbeginner.com/wp-themes/how-to-remove-the-powered-by-wordpress-footer-links/)
+- Go to footer and comment or remove get_template_part(‘template-parts/footer/site’, ‘info’);
+
+[How to customize login form](https://codex.wordpress.org/Customizing_the_Login_Form)
+
+[How to get posts with get_posts](https://codex.wordpress.org/Template_Tags/get_posts)
+
+
 [allow-install]:#how-to-allow-installation-of-plugins/themes
 [home]:#Wordpress-Reference
 [css]:#how-to-add-css/js-files
@@ -76,7 +124,7 @@ function my_theme_enqueue_styles() {
 1. Go to the folder that the parent theme is located and open the style.css
 
 ```css
-// copy the style header that looks like this
+/* copy the style header that looks like this*/
 
 /*
 Theme Name: Twenty Seventeen
@@ -152,21 +200,10 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 ```
-5. now add the style with the functions.php
+5. now go to the dashboard and click on themes
 
-```php
 
-<?php
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
-function my_theme_enqueue_styles() {
-    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
-
-}
-?>
-
-```
-
-6. and how the style is hooked up to the child theme
+6. and then activate the child theme
 
 [go back home][home]
 

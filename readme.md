@@ -1,13 +1,9 @@
 # Wordpress Reference
 
 - [how to allow installation of plugins/themes][allow-install]
-
 - [how to add css/js files][css]
-
 - [how to  create a child theme][child]
-
 - [how to install wordpress][install]
-
 - [how to customize a sidebar][sidebar]
 - [what does the template hierarchy look like][hierarchy]
 
@@ -16,7 +12,7 @@
 
 [hierarchy]:#what-does-the-template-hierarchy-look-like
 [allow-install]:#how-to-allow-installation-of-plugins/themes
-[home]:#Wordpress-Reference
+[home]:#wordpress-reference
 [css]:#how-to-add-css/js-files
 [child]:#how-to-create-a-child-theme
 [install]:#how-to-install-wordpress

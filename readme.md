@@ -9,21 +9,34 @@
 - [how to install wordpress][install]
 
 - [how to customize a sidebar][sidebar]
+- [what does the template hierarchy look like][hierarchy]
 
 
 
 
-
+[hierarchy]:#what-does-the-template-hierarchy-look-like
 [allow-install]:#how-to-allow-installation-of-plugins/themes
 [home]:#Wordpress-Reference
 [css]:#how-to-add-css/js-files
 [child]:#how-to-create-a-child-theme
 [install]:#how-to-install-wordpress
 
+
+
+### what does the template hierarchy look like
+
+**reference**
+- [interactive hierarchy map](https://wphierarchy.com/)
+- [template-hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/)
+
+![idk](https://developer.wordpress.org/files/2014/10/wp-hierarchy.png)
+
+[go back home][home]
+
 ### how to allow installation of plugins/themes
 
 **reference**
-- [How do I enable Wordpress to update itself through its back end?][https://www.digitalocean.com/community/questions/how-do-i-enable-wordpress-to-update-itself-through-its-back-end]
+- [How do I enable Wordpress to update itself through its back end?](https://www.digitalocean.com/community/questions/how-do-i-enable-wordpress-to-update-itself-through-its-back-end)
 
 #### Option 1
 

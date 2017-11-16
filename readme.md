@@ -16,8 +16,18 @@
 [css]:#how-to-add-css/js-files
 [child]:#how-to-create-a-child-theme
 [install]:#how-to-install-wordpress
+[sidebar]:#how-to-customize-a-sidebar
 
 
+### how to customize a sidebar
+**reference**
+- [customizing sidebars](https://codex.wordpress.org/Customizing_Your_Sidebar)
+
+```
+
+
+```
+[go back home][home]
 
 ### what does the template hierarchy look like
 

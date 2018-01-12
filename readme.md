@@ -11,9 +11,9 @@
 
 
 [hierarchy]:#what-does-the-template-hierarchy-look-like
-[allow-install]:#how-to-allow-installation-of-plugins/themes
+[allow-install]:#how-to-allow-installation-of-pluginsthemes
 [home]:#wordpress-reference
-[css]:#how-to-add-css/js-files
+[css]:#how-to-add-cssjs-files
 [child]:#how-to-create-a-child-theme
 [install]:#how-to-install-wordpress
 [sidebar]:#how-to-customize-a-sidebar

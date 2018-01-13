@@ -1,5 +1,6 @@
 # Wordpress Reference
 
+- [how to change siteurl from old domain to new domain][change-domain]
 - [how to allow installation of plugins/themes][allow-install]
 - [how to add css/js files][css]
 - [how to  create a child theme][child]
@@ -9,7 +10,7 @@
 
 
 
-
+[change-domain]:#how-to-change-siteurl-from-old-domain
 [hierarchy]:#what-does-the-template-hierarchy-look-like
 [allow-install]:#how-to-allow-installation-of-pluginsthemes
 [home]:#wordpress-reference
@@ -18,6 +19,27 @@
 [install]:#how-to-install-wordpress
 [sidebar]:#how-to-customize-a-sidebar
 
+### how to change siteurl from old domain
+
+**reference**
+- [Redirecting to old domain after migration](https://wordpress.stackexchange.com/questions/187574/redirecting-to-old-domain-after-migration)
+
+#### Option 1: change siteurl in MySQL
+
+1. Log into your mysql account and access your wordpress database
+
+2. select wp_options table and update the `siteurl` and `home` columns
+
+```sql
+
+update wp_options set option_value = "yourNewDomain.com" where option_name = "siteurl";
+
+update wp_options set option_value = "yourNewDomain.com" where option_name = "home"; 
+
+```
+3. Once you change the names to your domain, everything will be all good.
+
+[go back home][home]
 
 ### how to customize a sidebar
 **reference**

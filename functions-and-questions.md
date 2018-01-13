@@ -2,12 +2,60 @@
 
 [home]:#wordpress-functions-and-questions
 
+- is_front_page()
+- get_theme_mod
+- has_header_image 
+- header_image
+- get_theme_mod()
+- home_url()
+- esc_url()
+- esc_attr()
+- bloginfo()
+- get_bloginfo()
+
+### get_bloginfo()
+- [wordpress](https://developer.wordpress.org/reference/functions/get_bloginfo/)
+
+
+### bloginfo()
+- [wordpress](https://developer.wordpress.org/reference/functions/bloginfo/)
+
+### esc_url()
+- [wordpress](https://developer.wordpress.org/reference/functions/esc_url/)
+- [codex](https://codex.wordpress.org/Function_Reference/esc_url)
+
+### home_url()
+- [wordpress](https://developer.wordpress.org/reference/functions/home_url/)
+
+### wp_nav_menu
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/wp_nav_menu/)
+
+```php
+wp_nav_menu(array(
+                'theme_location'    => 'primary',
+                'container'       => 'div',
+                'container_id'    => '',
+                'container_class' => 'collapse navbar-collapse justify-content-end',
+                'menu_id'         => false,
+                'menu_class'      => 'navbar-nav',
+                'depth'           => 3,
+                'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
+                'walker'          => new wp_bootstrap_navwalker()
+                ));
+```
+
+[go back home][home]
+
 ### The proper way to add styles and scripts in the frontend
 
 **reference**
 - [source](https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts)
 - [wp_enqueue_style(id name, deps, src, version, media)](https://developer.wordpress.org/reference/functions/wp_enqueue_style/)
 - [wp_enqueue_script(id name,deps,src,version, in footer)](https://developer.wordpress.org/reference/functions/wp_enqueue_script/)
+
+[go back home][home]
 
 ### How to check if you are on a certain page
 

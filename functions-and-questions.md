@@ -12,20 +12,81 @@
 - esc_attr()
 - bloginfo()
 - get_bloginfo()
+- is_page_template()
+- esc_html_()
+- is_active_sidebar
+
+### is_active_sidebar()
+
+`is_active_sidebar( string|int $index )`
+
+Whether a sidebar is in use.
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/is_active_sidebar/)
+
+[go back home][home]
+
+### esc_html_()
+
+`esc_html__( string $text, string $domain = 'default' )`
+
+Retrieve the translation of $text and escapes it for safe use in HTML output.
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/esc_html__/)
+- [codex](https://codex.wordpress.org/Function_Reference/esc_html)
+
+[go back home][home]
+
+### is_page_template()
+
+`is_page_template( string|array $template = '' )`
+
+Whether currently in a page template.
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/is_page_template/)
+
+[go back home][home]
+
+### esc_attr()
+
+`esc_attr( string $text )`
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/esc_attr/)
+
+[go back home][home]
 
 ### get_bloginfo()
+
+**reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/get_bloginfo/)
 
+[go back home][home]
 
 ### bloginfo()
+
+**reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/bloginfo/)
 
+[go back home][home]
+
 ### esc_url()
+
+**reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/esc_url/)
 - [codex](https://codex.wordpress.org/Function_Reference/esc_url)
 
+[go back home][home]
+
 ### home_url()
+
+**reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/home_url/)
+
+[go back home][home]
 
 ### wp_nav_menu
 
@@ -73,7 +134,7 @@ wp_nav_menu(array(
 
 ### How to check if you are on  home page
 
-- `is_home()`
+`is_home()`
 
 **reference**
 - [source](https://developer.wordpress.org/reference/functions/is_home/)
@@ -88,7 +149,7 @@ wp_nav_menu(array(
 
 ### How to check if you are on front page
 
-- `is_front_page()` 
+`is_front_page()` 
 
 **reference**
 - [source](https://codex.wordpress.org/Function_Reference/is_front_page)

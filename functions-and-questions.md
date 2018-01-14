@@ -1,20 +1,20 @@
 # Wordpress Functions and Questions
 
 [home]:#wordpress-functions-and-questions
+[bloginfo]:#bloginfo
 
-- is_front_page()
-- get_theme_mod
+- [bloginfo()] [bloginfo]
+- esc_attr()
+- esc_html_()
+- esc_url()
+- get_bloginfo()
+- get_theme_mod()
 - has_header_image 
 - header_image
-- get_theme_mod()
 - home_url()
-- esc_url()
-- esc_attr()
-- bloginfo()
-- get_bloginfo()
-- is_page_template()
-- esc_html_()
 - is_active_sidebar
+- is_front_page()
+- is_page_template()
 
 ### is_active_sidebar()
 

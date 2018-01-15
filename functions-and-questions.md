@@ -1,10 +1,11 @@
 # Wordpress Functions and Questions
 
 [home]:#wordpress-functions-and-questions
-[bloginfo]:#bloginfo
+[blog-info]:#bloginfo
+[esc-attr]:#escattr
 
-- [bloginfo()] [bloginfo]
-- esc_attr()
+- [bloginfo()] [blog-info]
+- [esc_attr()][esc-attr]
 - esc_html_()
 - esc_url()
 - get_bloginfo()

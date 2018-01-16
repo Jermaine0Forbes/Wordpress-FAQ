@@ -1,21 +1,50 @@
 # Wordpress Functions and Questions
 
-[home]:#wordpress-functions-and-questions
-[blog-info]:#bloginfo
-[esc-attr]:#escattr
 
 - [bloginfo()] [blog-info]
 - [esc_attr()][esc-attr]
-- esc_html_()
-- esc_url()
-- get_bloginfo()
-- get_theme_mod()
-- has_header_image 
-- header_image
-- home_url()
-- is_active_sidebar
-- is_front_page()
-- is_page_template()
+- [esc_html_()][esc-html]
+- [esc_url()][esc-url]
+- [get_bloginfo()][get-blog]
+- [ get_template_part()][get-template]
+- [get_theme_mod()][get-theme]
+- [has_header_image][has-header-image] 
+- [header_image][header-image]
+- [home_url()][home-url]
+- [is_active_sidebar()][is-active-sidebar]
+- [is_front_page()][is-front-page]
+- [is_page_template()][is-page-template]
+
+[home]:#wordpress-functions-and-questions
+[blog-info]:#bloginfo
+[esc-attr]:#esc_attr
+[esc-html]:#esc_html_
+[esc-url]:#esc_url
+[get-blog]:#get_bloginfo
+[get-template]:#get_template_part
+[get-theme]:#get_theme_mod
+[has-header-image]:#has_header_image
+[header-image]:#header_image
+[home-url]:#home_url
+[is-active-sidebar]:#is_active_sidebar
+[is-front-page]:#how-to-check-if-you-are-on-the-front-page
+[is-page-template]:#is_page_template
+
+### get_template_part()
+
+`get_template_part( string $slug, string $name = null )`
+
+Loads a template part into a template.
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/get_template_part/)
+
+```php
+
+<?php get_template_part('footer-widget'); ?>
+```
+
+[go back home][home]
 
 ### is_active_sidebar()
 
@@ -111,6 +140,9 @@ wp_nav_menu(array(
 [go back home][home]
 
 ### The proper way to add styles and scripts in the frontend
+
+`wp_enqueue_style(id name, deps, src, version, media)`
+`wp_enqueue_script(id name,deps,src,version, in footer)`
 
 **reference**
 - [source](https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts)

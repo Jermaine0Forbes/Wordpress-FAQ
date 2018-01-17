@@ -1,6 +1,7 @@
 # Wordpress Reference
 
 - [Wordpress Function Reference][function-ref]
+- [Post Reference][post-ref]
 - [how to create a page template][page-temp]
 - [how to change siteurl from old domain to new domain][change-domain]
 - [how to allow installation of plugins/themes][allow-install]
@@ -20,6 +21,7 @@
 - [How to customize login form][customize-form]
 - [how to get posts with get_posts()][get-posts]
 
+[post-ref]:#post-reference
 [function-ref]:#wordpress-function-reference
 [customize-form]:#how-to-customize-login-form
 [remove-footer]:#how-to-remove-powered-by-wordpress-in-footer
@@ -41,10 +43,18 @@
 [install]:#how-to-install-wordpress
 [sidebar]:#how-to-customize-a-sidebar
 
+
+### Post Reference 
+
+**reference**
+- [codex](https://codex.wordpress.org/Class_Reference/WP_Post)
+
+[go back home][home]
+
 ### Wordpress function reference
 
 **reference**
--  <a href="https://codex.wordpress.org/Function_Reference" style=" color:white; background:grey;" >wordpress</a>
+-  [wordpress](https://codex.wordpress.org/Function_Reference)
 
 [go back home][home]
 

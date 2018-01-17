@@ -1,5 +1,6 @@
 # Wordpress Reference
 
+- [how to create a page template][page-temp]
 - [how to change siteurl from old domain to new domain][change-domain]
 - [how to allow installation of plugins/themes][allow-install]
 - [how to add css/js files][css]
@@ -7,9 +8,29 @@
 - [how to install wordpress][install]
 - [how to customize a sidebar][sidebar]
 - [what does the template hierarchy look like][hierarchy]
+- [how to use add_action and do_action][add-action]
+- [how to get src of  feature imaged post][image-post]
+- [the List of WP_Query arguments][query-arguments]
+- [how to get the parent category of a child category while looping through $query->have_posts()][parent-child]
+- [how to get all posts from category][all-category]
+- [Template Tags to use for your blog template OR while looping through a post][template-tags]
+- [How to turn on wordpress debug messages][debug]
+- [How to remove “Powered by Wordpress” in footer][remove-footer]
+- [How to customize login form][customize-form]
+- [how to get posts with get_posts()][get-posts]
 
 
-
+[customize-form]:#how-to-customize-login-form
+[remove-footer]:#how-to-remove-powered-by-wordpress-in-footer
+[debug]:#how-to-turn-on-wordpress-debug-messages
+[template-tags]:#template-tags-to-use-for-your-blog-template-or-while-looping-through-a-post
+[all-category]:#how-to-get-all-posts-from-category
+[parent-child]:#how-to-get-the-parent-category-of-a-child-category-while-looping-through-have_posts
+[query-arguments]:#the-list-of-wp_query-arguments
+[image-post]:#how-to-get-src-of-feature-imaged-post
+[add-action]:#how-to-use-add_action-and-do_action
+[get-posts]:#how-to-get-posts-with-get_posts
+[page-temp]:#how-to-create-a-page-template
 [change-domain]:#how-to-change-siteurl-from-old-domain
 [hierarchy]:#what-does-the-template-hierarchy-look-like
 [allow-install]:#how-to-allow-installation-of-pluginsthemes
@@ -18,6 +39,149 @@
 [child]:#how-to-create-a-child-theme
 [install]:#how-to-install-wordpress
 [sidebar]:#how-to-customize-a-sidebar
+
+
+### How to use add_action and do_action
+
+**reference**
+- [source](https://developer.wordpress.org/reference/functions/add_action/)
+- [second reference](http://frumph.net/2010/06/14/understanding-do_action-and-add_action/)
+- [third reference](http://wordpress.stackexchange.com/questions/99952/best-practice-way-to-implement-custom-sections-into-a-wordpress-theme/99958#99958)
+
+```php
+
+
+```
+
+[go back home][home]
+
+### How to get src of  feature imaged post
+
+**reference**
+- [source](https://codex.wordpress.org/Function_Reference/the_post_thumbnail_url)
+
+```php
+
+
+```
+
+[go back home][home]
+
+### The List of WP_Query arguments
+
+**reference**
+- [source](http://www.billerickson.net/code/wp_query-arguments/)
+
+```php
+
+
+```
+
+[go back home][home]
+
+### How to get the parent category of a child category while looping through $query->have_posts()
+
+**reference**
+- [source](http://www.wpbeginner.com/wp-themes/how-to-display-only-parent-category-in-your-wordpress-post-loop/)
+
+```php
+
+
+```
+
+[go back home][home]
+
+### How to get all posts from category
+
+**reference**
+- [source](http://wordpress.stackexchange.com/questions/4201/how-to-query-posts-by-category-and-tag)
+
+```php
+
+
+```
+
+[go back home][home]
+
+### Template Tags to use for your blog template OR while looping through a post
+
+**reference**
+- [source](https://codex.wordpress.org/Template_Tags)
+
+
+```php
+
+
+```
+
+[go back home][home]
+
+### How to turn on wordpress debug messages
+
+**reference**
+- [source](https://codex.wordpress.org/Debugging_in_WordPress)
+
+
+```php
+
+
+```
+
+[go back home][home]
+
+### How to remove “Powered by Wordpress” in footer
+
+**reference**
+- [source](http://www.wpbeginner.com/wp-themes/how-to-remove-the-powered-by-wordpress-footer-links/)
+- Go to footer and comment or remove get_template_part(‘template-parts/footer/site’, ‘info’);
+
+
+```php
+
+
+```
+
+[go back home][home]
+
+### How to customize login form
+
+**reference**
+- [source](https://codex.wordpress.org/Customizing_the_Login_Form)
+
+
+```php
+
+
+```
+
+[go back home][home]
+
+### How to get posts with get_posts
+
+**reference**
+- [source](https://codex.wordpress.org/Template_Tags/get_posts)
+
+
+```php
+
+
+```
+
+[go back home][home]
+
+
+### how to create a page template 
+
+**reference**
+- [wordpress][https://developer.wordpress.org/themes/template-files-section/page-template-files/]
+
+**Inside your page template add this**
+```php
+
+<?php /* Template Name: Example Template */ ?>
+```
+
+[go back home][home]
 
 ### how to change siteurl from old domain
 

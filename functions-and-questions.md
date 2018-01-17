@@ -6,7 +6,8 @@
 - [esc_html_()][esc-html]
 - [esc_url()][esc-url]
 - [get_bloginfo()][get-blog]
-- [ get_template_part()][get-template]
+- [get_post_format()][get-post-format]
+- [get_template_part()][get-template]
 - [get_theme_mod()][get-theme]
 - [has_header_image][has-header-image] 
 - [header_image][header-image]
@@ -29,6 +30,30 @@
 [is-active-sidebar]:#is_active_sidebar
 [is-front-page]:#how-to-check-if-you-are-on-the-front-page
 [is-page-template]:#is_page_template
+[get-post-format]:#get_post_format
+
+### get_post_format()
+
+`get_post_format( int|object|null $post = null )`
+
+Retrieve the format slug for a post
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/get_post_format/)
+
+```php
+/*
+ * Pull in a different sub-template, depending on the Post Format.
+ * 
+ * Make sure that there is a default format.php file to fall back to as a default.
+ * Name templates format-link.php, format-aside.php, etc.
+ *
+ * You should use this in the loop.
+ */
+get_template_part( 'format', get_post_format() );
+```
+
+[go back home][home]
 
 ### get_template_part()
 
@@ -227,134 +252,6 @@ wp_nav_menu(array(
 
 **reference**
 - [source](https://developer.wordpress.org/themes/basics/template-hierarchy/)
-
-```php
-
-
-```
-
-[go back home][home]
-
-### How to use add_action and do_action
-
-**reference**
-- [source](https://developer.wordpress.org/reference/functions/add_action/)
-- [second reference](http://frumph.net/2010/06/14/understanding-do_action-and-add_action/)
-- [third reference](http://wordpress.stackexchange.com/questions/99952/best-practice-way-to-implement-custom-sections-into-a-wordpress-theme/99958#99958)
-
-```php
-
-
-```
-
-[go back home][home]
-
-### How to get src of  feature imaged post
-
-**reference**
-- [source](https://codex.wordpress.org/Function_Reference/the_post_thumbnail_url)
-
-```php
-
-
-```
-
-[go back home][home]
-
-### The List of WP_Query arguments
-
-**reference**
-- [source](http://www.billerickson.net/code/wp_query-arguments/)
-
-```php
-
-
-```
-
-[go back home][home]
-
-### How to get the parent category of a child category while looping through $query->have_posts()
-
-**reference**
-- [source](http://www.wpbeginner.com/wp-themes/how-to-display-only-parent-category-in-your-wordpress-post-loop/)
-
-```php
-
-
-```
-
-[go back home][home]
-
-### How to get all posts from category
-
-**reference**
-- [source](http://wordpress.stackexchange.com/questions/4201/how-to-query-posts-by-category-and-tag)
-
-```php
-
-
-```
-
-[go back home][home]
-
-### Template Tags to use for your blog template OR while looping through a post
-
-**reference**
-- [source](https://codex.wordpress.org/Template_Tags)
-
-
-```php
-
-
-```
-
-[go back home][home]
-
-### How to turn on wordpress debug messages
-
-**reference**
-- [source](https://codex.wordpress.org/Debugging_in_WordPress)
-
-
-```php
-
-
-```
-
-[go back home][home]
-
-### How to remove “Powered by Wordpress” in footer
-
-**reference**
-- [source](http://www.wpbeginner.com/wp-themes/how-to-remove-the-powered-by-wordpress-footer-links/)
-- Go to footer and comment or remove get_template_part(‘template-parts/footer/site’, ‘info’);
-
-
-```php
-
-
-```
-
-[go back home][home]
-
-### How to customize login form
-
-**reference**
-- [source](https://codex.wordpress.org/Customizing_the_Login_Form)
-
-
-```php
-
-
-```
-
-[go back home][home]
-
-### How to get posts with get_posts
-
-**reference**
-- [source](https://codex.wordpress.org/Template_Tags/get_posts)
-
 
 ```php
 

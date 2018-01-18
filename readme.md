@@ -1,27 +1,47 @@
 # Wordpress Reference
 
+
+## Installation
+- [how to change siteurl from old domain to new domain][change-domain]
+- [how to install wordpress][install]
+
+## References
 - [Wordpress Function Reference][function-ref]
 - [Post Reference][post-ref]
-- [how to create a page template][page-temp]
-- [how to change siteurl from old domain to new domain][change-domain]
-- [how to allow installation of plugins/themes][allow-install]
-- [how to add css/js files][css]
-- [how to  create a child theme][child]
-- [how to install wordpress][install]
-- [how to customize a sidebar][sidebar]
 - [what does the template hierarchy look like][hierarchy]
-- [how to use add_action and do_action][add-action]
-- [how to get src of  feature imaged post][image-post]
 - [the List of WP_Query arguments][query-arguments]
+
+## Child theme
+- [how to  create a child theme][child]
+
+## Customization
+- [how to customize a sidebar][sidebar]
+- [How to customize login form][customize-form]
+
+## Post/Page
+- [how to get src of  feature imaged post][image-post]
 - [how to get the parent category of a child category while looping through $query->have_posts()][parent-child]
 - [how to get all posts from category][all-category]
 - [Template Tags to use for your blog template OR while looping through a post][template-tags]
-- [How to turn on wordpress debug messages][debug]
 - [How to remove “Powered by Wordpress” in footer][remove-footer]
-- [How to customize login form][customize-form]
 - [how to get posts with get_posts()][get-posts]
-- [how to add scripts from different urls][add-script]
+- [how to create a page template][page-temp]
 
+## Functions
+- [how to add css/js files][css]
+- [how to use add_action and do_action][add-action]
+- [how to add scripts from different urls][add-script]
+- [how to make jquery work][jquery-work]
+
+## Plugins
+- [how to allow installation of plugins/themes][allow-install]
+- [how to set placeholder text in contact form 7][form-place]
+
+## Settings
+- [How to turn on wordpress debug messages][debug]
+
+[jquery-work]:#how-to-make-jquery-work
+[form-place]:#how-to-set-placeholder-text-in-contact-form-7
 [add-script]:#how-to-add-scripts-from-different-urls
 [post-ref]:#post-reference
 [function-ref]:#wordpress-function-reference
@@ -44,6 +64,33 @@
 [child]:#how-to-create-a-child-theme
 [install]:#how-to-install-wordpress
 [sidebar]:#how-to-customize-a-sidebar
+
+
+
+### How to make JQuery work
+
+**reference**
+- [TypeError: $ is not a function Wordpress](https://stackoverflow.com/questions/12258282/typeerror-is-not-a-function-wordpress)
+
+```js
+jQuery( document ).ready(function( $ ) {
+// Code that uses jQuery's $ can follow here.
+$('.site-title').css('background-color','red');
+});
+```
+
+[go back home][home]
+
+### How to set placeholder text in contact form 7
+
+**reference**
+- [contact form 7](https://contactform7.com/setting-placeholder-text/)
+
+```php
+[text your-name placeholder "Enter Name"]
+```
+
+[go back home][home]
 
 ### How to add scripts from different urls
 

@@ -308,10 +308,14 @@ define( 'FS_METHOD', 'direct' );
 
 
 **To add css**
-`wp_enqueue_style( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, string $media = 'all' )`
+```
+wp_enqueue_style( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, string $media = 'all' )
+```
 
 **To add js**
-`wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )`
+```
+wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )
+```
 
 **reference**
 - [enqueue scripts](https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts)
@@ -329,7 +333,7 @@ function my_theme_enqueue_styles() {
 
 
 ```
-
+**This gets the child theme**
 ```php
 // in functions.php add this
 

@@ -15,6 +15,7 @@
 - [is_active_sidebar()][is-active-sidebar]
 - [is_front_page()][is-front-page]
 - [is_page_template()][is-page-template]
+- [post_class()][post-class]
 
 [home]:#wordpress-functions-and-questions
 [blog-info]:#bloginfo
@@ -31,6 +32,20 @@
 [is-front-page]:#how-to-check-if-you-are-on-the-front-page
 [is-page-template]:#is_page_template
 [get-post-format]:#get_post_format
+[post-class]:#post_class
+
+### post_class()
+
+`post_class( string|array $class = '', int|WP_Post $post_id = null )`
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/post_class/)
+
+```php
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'class-name' ); ?>>
+
+```
+
+[go back home][home]
 
 ### get_post_format()
 

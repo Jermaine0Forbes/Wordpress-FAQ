@@ -20,7 +20,9 @@
 - [How to remove “Powered by Wordpress” in footer][remove-footer]
 - [How to customize login form][customize-form]
 - [how to get posts with get_posts()][get-posts]
+- [how to add scripts from different urls][add-script]
 
+[add-script]:#how-to-add-scripts-from-different-urls
 [post-ref]:#post-reference
 [function-ref]:#wordpress-function-reference
 [customize-form]:#how-to-customize-login-form
@@ -43,6 +45,33 @@
 [install]:#how-to-install-wordpress
 [sidebar]:#how-to-customize-a-sidebar
 
+### How to add scripts from different urls
+
+- [tutplus](https://code.tutsplus.com/articles/how-to-include-javascript-and-css-in-your-wordpress-themes-and-plugins--wp-24321)
+
+```php
+function wptuts_scripts_load_cdn()
+{
+    // Deregister the included library
+    wp_deregister_script( 'jquery' );
+     
+    // Register the library again from Google's CDN
+    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', array(), null, false );
+     
+    // Register the script like this for a plugin:
+    wp_register_script( 'custom-script', plugins_url( '/js/custom-script.js', __FILE__ ), array( 'jquery' ) );
+    // or
+    // Register the script like this for a theme:
+    wp_register_script( 'custom-script', get_template_directory_uri() . '/js/custom-script.js', array( 'jquery' ) );
+ 
+    // For either a plugin or a theme, you can then enqueue the script:
+    wp_enqueue_script( 'custom-script' );
+}
+add_action( 'wp_enqueue_scripts', 'wptuts_scripts_load_cdn' );
+
+```
+
+[go back home][home]
 
 ### Post Reference 
 
@@ -277,15 +306,39 @@ define( 'FS_METHOD', 'direct' );
 
 ### how to add css/js files
 
+
+**To add css**
+`wp_enqueue_style( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, string $media = 'all' )`
+
+**To add js**
+`wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )`
+
 **reference**
 - [enqueue scripts](https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts)
 
+
+**This gets the parent theme**
 ```php
 // in functions.php add this
 
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
 function my_theme_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+
+}
+
+
+```
+
+```php
+// in functions.php add this
+
+<?php
+
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
+
+function my_theme_enqueue_scripts() {
+    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/index.js' );
 
 }
 

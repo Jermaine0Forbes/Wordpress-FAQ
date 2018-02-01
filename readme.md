@@ -442,11 +442,12 @@ define( 'WP_DEBUG', true );
 
 **reference**
 - [source](http://www.wpbeginner.com/wp-themes/how-to-remove-the-powered-by-wordpress-footer-links/)
-- Go to footer and comment or remove get_template_part(‘template-parts/footer/site’, ‘info’);
+ 
 
+1. Go to **footer.php** and comment out the `get_template_part()` that  has footer
 
 ```php
-
+// get_template_part(‘template-parts/footer/site’, ‘info’);
 
 ```
 
@@ -454,13 +455,38 @@ define( 'WP_DEBUG', true );
 
 ### How to customize login form
 
+If you want to change the style of the wordpress login form here 
+are a couple of ways of doing it.
+
 **reference**
 - [source](https://codex.wordpress.org/Customizing_the_Login_Form)
 
+**To create an inline style sheet to change login**
+```php
+function my_login_logo() { ?>
+    <style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/site-login-logo.png);
+		height:65px;
+		width:320px;
+		background-size: 320px 65px;
+		background-repeat: no-repeat;
+        	padding-bottom: 30px;
+        }
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
+```
+
+**To have a style sheet to change login**
 ```php
 
-
+function my_login_stylesheet() {
+    wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/style-login.css' );
+    wp_enqueue_script( 'custom-login', get_stylesheet_directory_uri() . '/style-login.js' );
+}
+add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
 ```
 
 [go back home][home]

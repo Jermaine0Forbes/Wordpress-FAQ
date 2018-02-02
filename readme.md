@@ -10,6 +10,7 @@
 - [Post Reference][post-ref]
 - [what does the template hierarchy look like][hierarchy]
 - [the List of WP_Query arguments][query-arguments]
+- [Standard post loops][standard-loop]
 
 ## Child theme
 - [how to  create a child theme][child]
@@ -32,6 +33,7 @@
 - [how to use add_action and do_action][add-action]
 - [how to add scripts from different urls][add-script]
 - [how to make jquery work][jquery-work]
+- [how to get the current theme's root folder][theme-root]
 
 ## Plugins
 - [how to allow installation of plugins/themes][allow-install]
@@ -40,6 +42,8 @@
 ## Settings
 - [How to turn on wordpress debug messages][debug]
 
+[theme-root]:#how-to-get-the-current-theme-folder
+[standard-loop]:#standard-post-loops
 [jquery-work]:#how-to-make-jquery-work
 [form-place]:#how-to-set-placeholder-text-in-contact-form-7
 [add-script]:#how-to-add-scripts-from-different-urls
@@ -66,6 +70,137 @@
 [sidebar]:#how-to-customize-a-sidebar
 
 
+
+
+### How to get the current theme folder
+
+`get_theme_file_uri( string $file = '' )`
+
+This method essential if you are trying to get root folder or your 
+child theme, in order to retrieve a js or css file
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/get_theme_file_uri/)
+
+```php
+//in functions.php
+
+function my_theme_enqueue_scripts() {
+    wp_enqueue_script( 'js-stick', get_theme_file_uri().'/js/scrollfix.js');
+    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/index.js');
+
+
+}
+
+
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
+
+```
+
+
+[go back home][home]
+
+### Standard Post loops
+
+Here are the typical ways to query posts/pages from the **WP_Query** class
+
+**reference**
+- [codex](https://codex.wordpress.org/Class_Reference/WP_Query)
+
+#### Standard Loop
+
+```php
+
+<?php
+
+// The Query
+$the_query = new WP_Query( $args );
+
+// The Loop
+if ( $the_query->have_posts() ) {
+	echo '<ul>';
+	while ( $the_query->have_posts() ) {
+		$the_query->the_post();
+		echo '<li>' . get_the_title() . '</li>';
+	}
+	echo '</ul>';
+	/* Restore original Post Data */
+	wp_reset_postdata();
+} else {
+	// no posts found
+}
+```
+
+#### Standard Loop 2
+
+```php
+<?php 
+// the query
+$the_query = new WP_Query( $args ); ?>
+
+<?php if ( $the_query->have_posts() ) : ?>
+
+	<!-- pagination here -->
+
+	<!-- the loop -->
+	<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+		<h2><?php the_title(); ?></h2>
+	<?php endwhile; ?>
+	<!-- end of the loop -->
+
+	<!-- pagination here -->
+
+	<?php wp_reset_postdata(); ?>
+
+<?php else : ?>
+	<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
+<?php endif; ?>
+
+```
+#### Multiple Loops
+
+```php
+<?php
+
+// The Query
+$query1 = new WP_Query( $args );
+
+if ( $query1->have_posts() ) {
+	// The Loop
+	while ( $query1->have_posts() ) {
+		$query1->the_post();
+		echo '<li>' . get_the_title() . '</li>';
+	}
+	
+	/* Restore original Post Data 
+	 * NB: Because we are using new WP_Query we aren't stomping on the 
+	 * original $wp_query and it does not need to be reset with 
+	 * wp_reset_query(). We just need to set the post data back up with
+	 * wp_reset_postdata().
+	 */
+	wp_reset_postdata();
+}
+
+/* The 2nd Query (without global var) */
+$query2 = new WP_Query( $args2 );
+
+if ( $query2->have_posts() ) {
+	// The 2nd Loop
+	while ( $query2->have_posts() ) {
+		$query2->the_post();
+		echo '<li>' . get_the_title( $query2->post->ID ) . '</li>';
+	}
+
+	// Restore original Post Data
+	wp_reset_postdata();
+}
+
+?>
+
+```
+
+
+[go back home][home]
 
 ### How to make JQuery work
 

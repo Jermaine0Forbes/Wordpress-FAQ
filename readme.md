@@ -69,7 +69,7 @@
 [install]:#how-to-install-wordpress
 [sidebar]:#how-to-customize-a-sidebar
 
-
+---
 
 
 ### How to get the current theme folder

@@ -1,7 +1,7 @@
 # Wordpress Functions and Questions
 
 
-- [bloginfo()] [blog-info]
+- [bloginfo()][blog-info]
 - [esc_attr()][esc-attr]
 - [esc_html_()][esc-html]
 - [esc_url()][esc-url]
@@ -37,6 +37,7 @@
 ### post_class()
 
 `post_class( string|array $class = '', int|WP_Post $post_id = null )`
+
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/post_class/)
 

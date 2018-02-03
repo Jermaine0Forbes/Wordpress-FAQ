@@ -194,23 +194,51 @@ $site_title = get_bloginfo( 'name' );
 
 ### bloginfo()
 
+`bloginfo( string $show = '' )`
+
+Displays information about the current site.
+
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/bloginfo/)
+
+```php
+//Display your blog's title in a tag.
+<h1><?php bloginfo( 'name' ); ?></h1>
+```
 
 [go back home][home]
 
 ### esc_url()
 
+`esc_url( string $url, array $protocols = null, string $_context = 'display' )`
+
+Checks and cleans a URL.
+
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/esc_url/)
 - [codex](https://codex.wordpress.org/Function_Reference/esc_url)
+
+```php
+
+<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
+```
 
 [go back home][home]
 
 ### home_url()
 
+`home_url( string $path = '', string|null $scheme = null )`
+
+Retrieves the URL for the current site where the front end is accessible.
+
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/home_url/)
+
+```php
+
+$url = home_url();
+echo $url;
+```
 
 [go back home][home]
 
@@ -237,7 +265,10 @@ wp_nav_menu(array(
 
 ### The proper way to add styles and scripts in the frontend
 
+**Adding css**
 `wp_enqueue_style(id name, deps, src, version, media)`
+
+**Adding js**
 `wp_enqueue_script(id name,deps,src,version, in footer)`
 
 **reference**
@@ -245,18 +276,39 @@ wp_nav_menu(array(
 - [wp_enqueue_style(id name, deps, src, version, media)](https://developer.wordpress.org/reference/functions/wp_enqueue_style/)
 - [wp_enqueue_script(id name,deps,src,version, in footer)](https://developer.wordpress.org/reference/functions/wp_enqueue_script/)
 
+```php
+function my_theme_enqueue_scripts() {
+    wp_enqueue_script( 'js-stick', get_theme_file_uri().'/js/scrollfix.js');
+    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/index.js');
+    wp_enqueue_style('master-css', get_theme_file_uri().'/css/master.css');
+
+}
+
+
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
+```
+
 [go back home][home]
 
 ### How to check if you are on a certain page
 
 `is_page( int|string|array $page = '' )`
 
+Is the query for an existing single page?
+
 **reference**
 - [source](https://developer.wordpress.org/reference/functions/is_page/)
 
 ```php
 
-
+// When any single Page is being displayed.
+is_page();
+ 
+// When Page 42 (ID) is being displayed.
+is_page( 42 );
+ 
+// When the Page with a post_title of "Contact" is being displayed.
+is_page( 'Contact' );
 ```
 
 [go back home][home]
@@ -265,12 +317,20 @@ wp_nav_menu(array(
 
 `is_home()`
 
+Checks to see if you are on the home page
+
 **reference**
-- [source](https://developer.wordpress.org/reference/functions/is_home/)
+- [wordpress](https://developer.wordpress.org/reference/functions/is_home/)
 
 
 ```php
-
+if ( is_home() ) {
+    // This is the blog posts index
+    get_sidebar( 'blog' );
+} else {
+    // This is not the blog posts index
+    get_sidebar();
+}
 
 ```
 
@@ -280,12 +340,19 @@ wp_nav_menu(array(
 
 `is_front_page()` 
 
+Checks to see if it is the front page
+
 **reference**
-- [source](https://codex.wordpress.org/Function_Reference/is_front_page)
+- [codex](https://codex.wordpress.org/Function_Reference/is_front_page)
 
 
 ```php
 
+<?php if(is_front_page()) {?>
+
+    // Do something 
+    
+<?php  } ?>
 
 ```
 

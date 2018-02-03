@@ -9,6 +9,7 @@
 - [get_post_format()][get-post-format]
 - [get_template_part()][get-template]
 - [get_theme_mod()][get-theme]
+- [get_query_var][get-query]
 - [has_header_image][has-header-image] 
 - [header_image][header-image]
 - [home_url()][home-url]
@@ -33,6 +34,25 @@
 [is-page-template]:#is_page_template
 [get-post-format]:#get_post_format
 [post-class]:#post_class
+[get-query]:#get_query_var
+
+
+### get_query_var
+
+Retrieve variable in the WP_Query class.
+
+`get_query_var( string $var, mixed $default = '' )`
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/get_query_var/)
+
+```php
+<?php
+
+    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+```
+
+[go back home][home]
 
 ### post_class()
 

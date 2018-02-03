@@ -34,6 +34,7 @@
 - [how to add scripts from different urls][add-script]
 - [how to make jquery work][jquery-work]
 - [how to get the current theme's root folder][theme-root]
+- [how to add pagination to blog][add-pagination]
 
 ## Plugins
 - [how to allow installation of plugins/themes][allow-install]
@@ -42,6 +43,7 @@
 ## Settings
 - [How to turn on wordpress debug messages][debug]
 
+[add-pagination]:#how-to-add-pagination-to-blog
 [theme-root]:#how-to-get-the-current-theme-folder
 [standard-loop]:#standard-post-loops
 [jquery-work]:#how-to-make-jquery-work
@@ -71,6 +73,68 @@
 
 ---
 
+
+### How to add pagination to blog
+
+` echo paginate_links(array("total" => $the_query->max_num_pages));`
+
+**reference**
+- [WordPress Pagination Tutorial (Custom Query & Template Integration)](https://www.youtube.com/watch?v=HMscydyViZw)
+- [paginate_links](https://developer.wordpress.org/reference/functions/paginate_links/)
+
+```php
+    <?php
+
+    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+    $args = array(
+   'post_type' => 'post', //must use tag id for this field
+   'posts_per_page' => 3,
+   "paged" => $paged,
+
+ ); //get all posts
+
+
+ // the query
+ $the_query = new WP_Query( $args ); ?>
+
+ <?php if ( $the_query->have_posts() ) : ?>
+
+ 	<!-- pagination here -->
+
+ 	<!-- the loop -->
+ 	<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+        <div class="border border-bottom-0 text-center">
+            <h2><?php the_title(); ?></h2>
+            <p><?php the_content(); ?></p>
+        </div>
+
+ 	<?php endwhile; ?>
+ 	<!-- end of the loop -->
+
+ 	<!-- pagination here -->
+    <?php
+
+        //previous_posts_link();
+       echo paginate_links(array(
+           "total" => $the_query->max_num_pages
+       ));
+        //next_posts_link("Next post", $the_query->max_num_pages);
+
+     ?>
+
+ 	<?php wp_reset_postdata(); ?>
+
+
+
+ <?php else : ?>
+ 	<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
+ <?php
+    endif;
+ ?>
+
+```
+
+[go back home][home]
 
 ### How to get the current theme folder
 
@@ -157,6 +221,44 @@ $the_query = new WP_Query( $args ); ?>
 <?php endif; ?>
 
 ```
+
+#### Standard Loop 3 
+
+```php
+
+    <?php
+    global $wp_query;
+    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+    $args = array(
+   'post_type' => 'post', //must use tag id for this field
+   'posts_per_page' => 3,
+   "paged" => $paged,
+
+ ); //get all posts
+
+    $posts = get_posts($args);
+
+     ?>
+
+     <?php
+     foreach ($posts as $post) :
+         //$post->the_post();
+      ?>
+
+      <div class=" border border-bottom-0 row justify-content-center">
+          <div class="col text-center">
+
+              <h4><?php echo $post->post_title; ?></h4>
+              <p><?php echo $post->post_content;  ?></p>
+          </div>
+      </div>
+        
+ <?php
+ endforeach;
+ 
+   ?>
+```
+
 #### Multiple Loops
 
 ```php

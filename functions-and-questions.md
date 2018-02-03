@@ -9,7 +9,7 @@
 - [get_post_format()][get-post-format]
 - [get_template_part()][get-template]
 - [get_theme_mod()][get-theme]
-- [get_query_var][get-query]
+- [get_query_var()][get-query]
 - [has_header_image][has-header-image] 
 - [header_image][header-image]
 - [home_url()][home-url]
@@ -37,7 +37,7 @@
 [get-query]:#get_query_var
 
 
-### get_query_var
+### get_query_var()
 
 Retrieve variable in the WP_Query class.
 
@@ -116,6 +116,15 @@ Whether a sidebar is in use.
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/is_active_sidebar/)
 
+```php
+<?php if ( is_active_sidebar( 'left-sidebar' ) ) { ?>
+    <ul id="sidebar">
+        <?php dynamic_sidebar( 'left-sidebar' ); ?>
+    </ul>
+<?php } ?>
+
+```
+
 [go back home][home]
 
 ### esc_html_()
@@ -128,6 +137,10 @@ Retrieve the translation of $text and escapes it for safe use in HTML output.
 - [wordpress](https://developer.wordpress.org/reference/functions/esc_html__/)
 - [codex](https://codex.wordpress.org/Function_Reference/esc_html)
 
+```
+<h3><?php echo esc_html__( 'Title', 'text-domain' )?></h3>
+```
+
 [go back home][home]
 
 ### is_page_template()
@@ -139,6 +152,16 @@ Whether currently in a page template.
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/is_page_template/)
 
+```php
+<?php
+
+if ( is_page_template( 'about.php' ) ) {
+    // about.php is used
+} else {
+    // about.php is not used
+}
+```
+
 [go back home][home]
 
 ### esc_attr()
@@ -148,12 +171,24 @@ Whether currently in a page template.
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/esc_attr/)
 
+```php
+<input type="text" name="fname" value="<?php echo esc_attr( $fname ); ?>">
+```
+
 [go back home][home]
 
 ### get_bloginfo()
 
+`get_bloginfo( string $show = '', string $filter = 'raw' )`
+
+Retrieves information about the current site.
+
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/get_bloginfo/)
+
+```php
+$site_title = get_bloginfo( 'name' );
+```
 
 [go back home][home]
 

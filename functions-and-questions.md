@@ -1,6 +1,6 @@
 # Wordpress Functions and Questions
 
-
+- [_e()][e]
 - [bloginfo()][blog-info]
 - [esc_attr()][esc-attr]
 - [esc_html_()][esc-html]
@@ -18,7 +18,11 @@
 - [is_page_template()][is-page-template]
 - [post_class()][post-class]
 - [wp_list_pages()][list-pages]
+- [wp_list_categories()][list-categories]
 
+[list-categories]:#wp_list_categories
+[e]:#_e
+[list-categories]:#wp_list_categories
 [list-pages]:#wp_list_pages
 [home]:#wordpress-functions-and-questions
 [blog-info]:#bloginfo
@@ -39,58 +43,86 @@
 [get-query]:#get_query_var
 
 
+### _e()
+
+`_e( string $text, string $domain = 'default' )`
+
+**wordpress definition:** Display translated text.
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/_e/)
+
+```
+
+
+```
+
+[go back home][home]
+
+### wp_list_categories()
+
+`wp_list_categories( string|array $args = '' )`
+
+**wordpress definition:** Display or retrieve the HTML list of categories.
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/wp_list_categories/)
+
+**arguments**
+- **child_of** (int)
+- **current_directory** (int|array)
+- **depth** (int)
+- **echo** (bool|int)
+- **exclude** (array|string)
+- **exclude_tree** (array|string)
+- **feed** (string)
+- **feed_image** (string)
+- **feed_type** (string)
+- **hide_empty** (boo|int)
+- **hide_title_if_empty** (bool)
+- **hierarchical** (bool)
+- **order** (string)
+- **orderby** (string)
+- **seperator** (string)
+- **show_count** (bool|int)
+- **show_option_all** (string)
+- **show_option_none** (string)
+- **style** (string)
+- **taxonomy** (string)
+- **title_li** (string)
+- **use_desc_for_title** (bool|int)
+
+```php
+//This will display all the categories
+    <ul>
+<?php wp_list_categories(); ?>
+    </ul>
+```
+
+[go back home][home]
+
 ### wp_list_pages()
 
 `wp_list_pages( array|string $args = '' )`
 
 **wordpress definition:** Retrieve or display list of pages (or hierarchical post type items) in list (li) format.
 
-**my definition:** I think it retrives all the pages/posts that you want in a list format
+**my definition:** I think it retrives all the pages/posts that you want in a <li> format
 
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/wp_list_pages/)
 
-```
+```php
+<ul>
+<?php wp_list_pages( array(
+   
+    //This displays the Pages with the id of 5,9,23
+    'include'  => array( 5, 9, 23 ), 
 
-$args
-
-    (array|string) (Optional) Array or string of arguments. Optional.
-
-        'child_of'
-        (int) Display only the sub-pages of a single page by ID. Default 0 (all pages).
-        'authors'
-        (string) Comma-separated list of author IDs. Default empty (all authors).
-        'date_format'
-        (string) PHP date format to use for the listed pages. Relies on the 'show_date' parameter. Default is the value of 'date_format' option.
-        'depth'
-        (int) Number of levels in the hierarchy of pages to include in the generated list. Accepts -1 (any depth), 0 (all pages), 1 (top-level pages only), and n (pages to the given n depth). Default 0.
-        'echo'
-        (bool) Whether or not to echo the list of pages. Default true.
-        'exclude'
-        (string) Comma-separated list of page IDs to exclude.
-        'include'
-        (array) Comma-separated list of page IDs to include.
-        'link_after'
-        (string) Text or HTML to follow the page link label. Default null.
-        'link_before'
-        (string) Text or HTML to precede the page link label. Default null.
-        'post_type'
-        (string) Post type to query for. Default 'page'.
-        'post_status'
-        (string|array) Comma-separated list or array of post statuses to include. Default 'publish'.
-        'show_date'
-        (string) Whether to display the page publish or modified date for each page. Accepts 'modified' or any other value. An empty value hides the date.
-        'sort_column'
-        (string) Comma-separated list of column names to sort the pages by. Accepts 'post_author', 'post_date', 'post_title', 'post_name', 'post_modified', 'post_modified_gmt', 'menu_order', 'post_parent', 'ID', 'rand', or 'comment_count'. Default 'post_title'.
-        'title_li'
-        (string) List heading. Passing a null or empty value will result in no heading, and the list will not be wrapped with unordered list <ul> tags. Default 'Pages'.
-        'item_spacing'
-        (string) Whether to preserve whitespace within the menu's HTML. Accepts 'preserve' or 'discard'. Default 'preserve'.
-        'walker'
-        (Walker) Walker instance to use for listing pages. Default empty (Walker_Page).
-
-    Default value: ''
-
+    // This displays a title of Poetry before generating the list
+    'title_li' => '<h2>' . __('Poetry') . '</h2>'
+) ); ?>
+</ul>
 ```
 
 

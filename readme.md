@@ -859,6 +859,7 @@ update wp_options set option_value = "yourNewDomain.com" where option_name = "ho
 ### how to customize a sidebar
 **reference**
 - [customizing sidebars](https://codex.wordpress.org/Customizing_Your_Sidebar)
+- [Sidebars](https://developer.wordpress.org/themes/functionality/sidebars/)
 
 ```
 

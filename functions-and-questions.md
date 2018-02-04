@@ -17,7 +17,9 @@
 - [is_front_page()][is-front-page]
 - [is_page_template()][is-page-template]
 - [post_class()][post-class]
+- [wp_list_pages()][list-pages]
 
+[list-pages]:#wp_list_pages
 [home]:#wordpress-functions-and-questions
 [blog-info]:#bloginfo
 [esc-attr]:#esc_attr
@@ -36,6 +38,63 @@
 [post-class]:#post_class
 [get-query]:#get_query_var
 
+
+### wp_list_pages()
+
+`wp_list_pages( array|string $args = '' )`
+
+**wordpress definition:** Retrieve or display list of pages (or hierarchical post type items) in list (li) format.
+
+**my definition:** I think it retrives all the pages/posts that you want in a list format
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/wp_list_pages/)
+
+```
+
+$args
+
+    (array|string) (Optional) Array or string of arguments. Optional.
+
+        'child_of'
+        (int) Display only the sub-pages of a single page by ID. Default 0 (all pages).
+        'authors'
+        (string) Comma-separated list of author IDs. Default empty (all authors).
+        'date_format'
+        (string) PHP date format to use for the listed pages. Relies on the 'show_date' parameter. Default is the value of 'date_format' option.
+        'depth'
+        (int) Number of levels in the hierarchy of pages to include in the generated list. Accepts -1 (any depth), 0 (all pages), 1 (top-level pages only), and n (pages to the given n depth). Default 0.
+        'echo'
+        (bool) Whether or not to echo the list of pages. Default true.
+        'exclude'
+        (string) Comma-separated list of page IDs to exclude.
+        'include'
+        (array) Comma-separated list of page IDs to include.
+        'link_after'
+        (string) Text or HTML to follow the page link label. Default null.
+        'link_before'
+        (string) Text or HTML to precede the page link label. Default null.
+        'post_type'
+        (string) Post type to query for. Default 'page'.
+        'post_status'
+        (string|array) Comma-separated list or array of post statuses to include. Default 'publish'.
+        'show_date'
+        (string) Whether to display the page publish or modified date for each page. Accepts 'modified' or any other value. An empty value hides the date.
+        'sort_column'
+        (string) Comma-separated list of column names to sort the pages by. Accepts 'post_author', 'post_date', 'post_title', 'post_name', 'post_modified', 'post_modified_gmt', 'menu_order', 'post_parent', 'ID', 'rand', or 'comment_count'. Default 'post_title'.
+        'title_li'
+        (string) List heading. Passing a null or empty value will result in no heading, and the list will not be wrapped with unordered list <ul> tags. Default 'Pages'.
+        'item_spacing'
+        (string) Whether to preserve whitespace within the menu's HTML. Accepts 'preserve' or 'discard'. Default 'preserve'.
+        'walker'
+        (Walker) Walker instance to use for listing pages. Default empty (Walker_Page).
+
+    Default value: ''
+
+```
+
+
+[go back home][home]
 
 ### get_query_var()
 
@@ -351,7 +410,7 @@ Checks to see if it is the front page
 <?php if(is_front_page()) {?>
 
     // Do something 
-    
+
 <?php  } ?>
 
 ```
@@ -373,27 +432,3 @@ Checks to see if it is the front page
 
 [go back home][home]
 
-### How to create a child theme
-
-
-**reference**
-- [wordpress](https://codex.wordpress.org/Child_Themes)
-
-```php
-
-
-```
-
-[go back home][home]
-
-### What is the Template Hierarchy
-
-**reference**
-- [source](https://developer.wordpress.org/themes/basics/template-hierarchy/)
-
-```php
-
-
-```
-
-[go back home][home]

@@ -1,6 +1,6 @@
 # Wordpress Functions and Questions
 
-
+- [_e()][e]
 - [bloginfo()][blog-info]
 - [esc_attr()][esc-attr]
 - [esc_html_()][esc-html]
@@ -9,7 +9,7 @@
 - [get_post_format()][get-post-format]
 - [get_template_part()][get-template]
 - [get_theme_mod()][get-theme]
-- [get_query_var][get-query]
+- [get_query_var()][get-query]
 - [has_header_image][has-header-image] 
 - [header_image][header-image]
 - [home_url()][home-url]
@@ -17,7 +17,13 @@
 - [is_front_page()][is-front-page]
 - [is_page_template()][is-page-template]
 - [post_class()][post-class]
+- [wp_list_pages()][list-pages]
+- [wp_list_categories()][list-categories]
 
+[list-categories]:#wp_list_categories
+[e]:#_e
+[list-categories]:#wp_list_categories
+[list-pages]:#wp_list_pages
 [home]:#wordpress-functions-and-questions
 [blog-info]:#bloginfo
 [esc-attr]:#esc_attr
@@ -37,7 +43,92 @@
 [get-query]:#get_query_var
 
 
-### get_query_var
+### _e()
+
+`_e( string $text, string $domain = 'default' )`
+
+**wordpress definition:** Display translated text.
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/_e/)
+
+```
+
+
+```
+
+[go back home][home]
+
+### wp_list_categories()
+
+`wp_list_categories( string|array $args = '' )`
+
+**wordpress definition:** Display or retrieve the HTML list of categories.
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/wp_list_categories/)
+
+**arguments**
+- **child_of** (int)
+- **current_directory** (int|array)
+- **depth** (int)
+- **echo** (bool|int)
+- **exclude** (array|string)
+- **exclude_tree** (array|string)
+- **feed** (string)
+- **feed_image** (string)
+- **feed_type** (string)
+- **hide_empty** (boo|int)
+- **hide_title_if_empty** (bool)
+- **hierarchical** (bool)
+- **order** (string)
+- **orderby** (string)
+- **seperator** (string)
+- **show_count** (bool|int)
+- **show_option_all** (string)
+- **show_option_none** (string)
+- **style** (string)
+- **taxonomy** (string)
+- **title_li** (string)
+- **use_desc_for_title** (bool|int)
+
+```php
+//This will display all the categories
+    <ul>
+<?php wp_list_categories(); ?>
+    </ul>
+```
+
+[go back home][home]
+
+### wp_list_pages()
+
+`wp_list_pages( array|string $args = '' )`
+
+**wordpress definition:** Retrieve or display list of pages (or hierarchical post type items) in list (li) format.
+
+**my definition:** I think it retrives all the pages/posts that you want in a <li> format
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/wp_list_pages/)
+
+```php
+<ul>
+<?php wp_list_pages( array(
+   
+    //This displays the Pages with the id of 5,9,23
+    'include'  => array( 5, 9, 23 ), 
+
+    // This displays a title of Poetry before generating the list
+    'title_li' => '<h2>' . __('Poetry') . '</h2>'
+) ); ?>
+</ul>
+```
+
+
+[go back home][home]
+
+### get_query_var()
 
 Retrieve variable in the WP_Query class.
 
@@ -116,6 +207,15 @@ Whether a sidebar is in use.
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/is_active_sidebar/)
 
+```php
+<?php if ( is_active_sidebar( 'left-sidebar' ) ) { ?>
+    <ul id="sidebar">
+        <?php dynamic_sidebar( 'left-sidebar' ); ?>
+    </ul>
+<?php } ?>
+
+```
+
 [go back home][home]
 
 ### esc_html_()
@@ -128,6 +228,10 @@ Retrieve the translation of $text and escapes it for safe use in HTML output.
 - [wordpress](https://developer.wordpress.org/reference/functions/esc_html__/)
 - [codex](https://codex.wordpress.org/Function_Reference/esc_html)
 
+```
+<h3><?php echo esc_html__( 'Title', 'text-domain' )?></h3>
+```
+
 [go back home][home]
 
 ### is_page_template()
@@ -139,6 +243,16 @@ Whether currently in a page template.
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/is_page_template/)
 
+```php
+<?php
+
+if ( is_page_template( 'about.php' ) ) {
+    // about.php is used
+} else {
+    // about.php is not used
+}
+```
+
 [go back home][home]
 
 ### esc_attr()
@@ -148,34 +262,74 @@ Whether currently in a page template.
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/esc_attr/)
 
+```php
+<input type="text" name="fname" value="<?php echo esc_attr( $fname ); ?>">
+```
+
 [go back home][home]
 
 ### get_bloginfo()
 
+`get_bloginfo( string $show = '', string $filter = 'raw' )`
+
+Retrieves information about the current site.
+
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/get_bloginfo/)
+
+```php
+$site_title = get_bloginfo( 'name' );
+```
 
 [go back home][home]
 
 ### bloginfo()
 
+`bloginfo( string $show = '' )`
+
+Displays information about the current site.
+
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/bloginfo/)
+
+```php
+//Display your blog's title in a tag.
+<h1><?php bloginfo( 'name' ); ?></h1>
+```
 
 [go back home][home]
 
 ### esc_url()
 
+`esc_url( string $url, array $protocols = null, string $_context = 'display' )`
+
+Checks and cleans a URL.
+
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/esc_url/)
 - [codex](https://codex.wordpress.org/Function_Reference/esc_url)
+
+```php
+
+<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
+```
 
 [go back home][home]
 
 ### home_url()
 
+`home_url( string $path = '', string|null $scheme = null )`
+
+Retrieves the URL for the current site where the front end is accessible.
+
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/home_url/)
+
+```php
+
+$url = home_url();
+echo $url;
+```
 
 [go back home][home]
 
@@ -202,7 +356,10 @@ wp_nav_menu(array(
 
 ### The proper way to add styles and scripts in the frontend
 
+**Adding css**
 `wp_enqueue_style(id name, deps, src, version, media)`
+
+**Adding js**
 `wp_enqueue_script(id name,deps,src,version, in footer)`
 
 **reference**
@@ -210,18 +367,39 @@ wp_nav_menu(array(
 - [wp_enqueue_style(id name, deps, src, version, media)](https://developer.wordpress.org/reference/functions/wp_enqueue_style/)
 - [wp_enqueue_script(id name,deps,src,version, in footer)](https://developer.wordpress.org/reference/functions/wp_enqueue_script/)
 
+```php
+function my_theme_enqueue_scripts() {
+    wp_enqueue_script( 'js-stick', get_theme_file_uri().'/js/scrollfix.js');
+    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/index.js');
+    wp_enqueue_style('master-css', get_theme_file_uri().'/css/master.css');
+
+}
+
+
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
+```
+
 [go back home][home]
 
 ### How to check if you are on a certain page
 
 `is_page( int|string|array $page = '' )`
 
+Is the query for an existing single page?
+
 **reference**
 - [source](https://developer.wordpress.org/reference/functions/is_page/)
 
 ```php
 
-
+// When any single Page is being displayed.
+is_page();
+ 
+// When Page 42 (ID) is being displayed.
+is_page( 42 );
+ 
+// When the Page with a post_title of "Contact" is being displayed.
+is_page( 'Contact' );
 ```
 
 [go back home][home]
@@ -230,12 +408,20 @@ wp_nav_menu(array(
 
 `is_home()`
 
+Checks to see if you are on the home page
+
 **reference**
-- [source](https://developer.wordpress.org/reference/functions/is_home/)
+- [wordpress](https://developer.wordpress.org/reference/functions/is_home/)
 
 
 ```php
-
+if ( is_home() ) {
+    // This is the blog posts index
+    get_sidebar( 'blog' );
+} else {
+    // This is not the blog posts index
+    get_sidebar();
+}
 
 ```
 
@@ -245,12 +431,19 @@ wp_nav_menu(array(
 
 `is_front_page()` 
 
+Checks to see if it is the front page
+
 **reference**
-- [source](https://codex.wordpress.org/Function_Reference/is_front_page)
+- [codex](https://codex.wordpress.org/Function_Reference/is_front_page)
 
 
 ```php
 
+<?php if(is_front_page()) {?>
+
+    // Do something 
+
+<?php  } ?>
 
 ```
 
@@ -271,27 +464,3 @@ wp_nav_menu(array(
 
 [go back home][home]
 
-### How to create a child theme
-
-
-**reference**
-- [wordpress](https://codex.wordpress.org/Child_Themes)
-
-```php
-
-
-```
-
-[go back home][home]
-
-### What is the Template Hierarchy
-
-**reference**
-- [source](https://developer.wordpress.org/themes/basics/template-hierarchy/)
-
-```php
-
-
-```
-
-[go back home][home]

@@ -82,6 +82,7 @@
 - [WordPress Pagination Tutorial (Custom Query & Template Integration)](https://www.youtube.com/watch?v=HMscydyViZw)
 - [paginate_links](https://developer.wordpress.org/reference/functions/paginate_links/)
 
+**paginate_links()**
 ```php
     <?php
 
@@ -132,6 +133,20 @@
     endif;
  ?>
 
+```
+
+**next_posts_link()**
+```php
+<?php
+
+//If you want to only next and previous arrow links then
+//this is how you do it
+
+        previous_posts_link();
+       
+        next_posts_link("Next post", $the_query->max_num_pages);
+
+     ?>
 ```
 
 [go back home][home]
@@ -376,25 +391,84 @@ add_action( 'wp_enqueue_scripts', 'wptuts_scripts_load_cdn' );
 **reference**
 - [codex](https://codex.wordpress.org/Class_Reference/WP_Post)
 
+Member Variable|Variable Type|Notes
+-|-|-
+ID|int|The ID of the post 
+post_author|string|The post author's user ID (numeric string)  
+post_name|string|The post's slug   
+post_type|string|[post types](https://codex.wordpress.org/Post_Types)  
+post_title|string|The title of the post  
+post_date|string|Format: 0000-00-00 00:00:00  
+post_date_gmt|string|Format: 0000-00-00 00:00:00  
+post_content|string| The full content of the post   
+post_excerpt|string| User-defined post excerpt   
+post_status|string|[get_post_status](https://codex.wordpress.org/Function_Reference/get_post_status)  
+
+
 [go back home][home]
 
 ### Wordpress function reference
 
+There are a lot of functions in this bitch, so I am only going to 
+focus on **Post, Custom Post Type, Page, Attachment and Bookmarks Functions**
+
 **reference**
 -  [wordpress](https://codex.wordpress.org/Function_Reference)
+
+**Posts**
+
+- [get_adjacent_post]()
+- [get_boundary_post]()
+- [get_children]()
+- [get_extended]()
+- [get_next_post]()
+- [get_next_posts_link]()
+- [next_posts_link]()
+- [get_permalink]()
+- [the_permalink]()
+- [get_the_excerpt]()
+- [the_excerpt]()
+- [get_the_post_thumbnail]()
+- [get_post]()
+- [get_post_field]()
+- [get_post_ancestors]()
+- [get_post_mime_type]()
+- [get_post_status]()
+- [get_post_format]()
+- [set_post_format]()
+- [get_edit_post_link]()
+- [get_delete_post_link]()
+- [get_previous_post]()
+- [get_previous_posts_link]()
+- [previous_posts_link]()
+- [get_posts]()
+- [have_posts]()
+- [is_single]()
+- [is_sticky]()
+- [get_the_ID]()
+- [the_ID]()
+- [the_post]()
+- [wp_get_recent_posts]()
+- [has_post_thumbnail]()
+- [has_excerpt]()
+- [has_post_format]()
 
 [go back home][home]
 
 ### How to use add_action and do_action
 
+Actions are the hooks that the WordPress core launches at specific points during execution, or when specific events occur. Plugins can specify that one or more of its PHP functions are executed at these points, using the Action API.
+
+`add_action( string $tag, callable $function_to_add, int $priority = 10, int $accepted_args = 1 )`
+
 **reference**
-- [source](https://developer.wordpress.org/reference/functions/add_action/)
-- [second reference](http://frumph.net/2010/06/14/understanding-do_action-and-add_action/)
-- [third reference](http://wordpress.stackexchange.com/questions/99952/best-practice-way-to-implement-custom-sections-into-a-wordpress-theme/99958#99958)
+- [wordpress](https://developer.wordpress.org/reference/functions/add_action/)
+- [understanding do_action annd add_action](http://frumph.net/2010/06/14/understanding-do_action-and-add_action/)
+- [best practice way to implement custom sections into a wordpress](http://wordpress.stackexchange.com/questions/99952/best-practice-way-to-implement-custom-sections-into-a-wordpress-theme/99958#99958)
 
 ```php
 
-
+add_action( 'save_post', 'wpdocs_my_save_post', 10, 3 );
 ```
 
 [go back home][home]
@@ -405,6 +479,11 @@ add_action( 'wp_enqueue_scripts', 'wptuts_scripts_load_cdn' );
 - [source](https://codex.wordpress.org/Function_Reference/the_post_thumbnail_url)
 
 ```php
+<?php if ( has_post_thumbnail() ) : ?>
+	<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+	<img src="<?php the_post_thumbnail_url(); ?>"/>
+	</a>
+<?php endif; ?>
 
 
 ```
@@ -793,6 +872,7 @@ update wp_options set option_value = "yourNewDomain.com" where option_name = "ho
 ### how to customize a sidebar
 **reference**
 - [customizing sidebars](https://codex.wordpress.org/Customizing_Your_Sidebar)
+- [Sidebars](https://developer.wordpress.org/themes/functionality/sidebars/)
 
 ```
 

@@ -45,6 +45,9 @@
 ## Settings
 - [How to turn on wordpress debug messages][debug]
 
+## Need to address 
+- How to add CSS class to custom logo?
+
 [wepack-word]:#how-to-setup-webpack-with-wordpress
 [new-installation]:#how-to-install-a-new-wordpress
 [add-pagination]:#how-to-add-pagination-to-blog

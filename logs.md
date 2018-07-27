@@ -1,5 +1,25 @@
 # Logs
 
+## 7/27/18
+
+### how to change custom logo 
+
+[answer](https://wordpress.stackexchange.com/questions/229905/how-to-add-css-class-to-custom-logo)
+
+```php
+add_filter( 'get_custom_logo', 'change_logo_class' );
+
+
+function change_logo_class( $html ) {
+
+    $html = str_replace( 'custom-logo', 'your-custom-class', $html );
+    $html = str_replace( 'custom-logo-link', 'your-custom-class', $html );
+
+    return $html;
+}
+```
+
+
 ## 7/26/18
 
 ### If you want to build your own theme

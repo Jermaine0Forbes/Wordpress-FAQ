@@ -5,6 +5,7 @@
 - [how to change siteurl from old domain to new domain][change-domain]
 - [how to install wordpress for the first time][install]
 - [how install a new wordpress][new-installation]
+- [how to setup webpack for wordpress][wepack-word]
 
 ## References
 - [Wordpress Function Reference][function-ref]
@@ -44,6 +45,7 @@
 ## Settings
 - [How to turn on wordpress debug messages][debug]
 
+[wepack-word]:#how-to-setup-webpack-with-wordpress
 [new-installation]:#how-to-install-a-new-wordpress
 [add-pagination]:#how-to-add-pagination-to-blog
 [theme-root]:#how-to-get-the-current-theme-folder
@@ -75,6 +77,35 @@
 
 ---
 
+### How to setup up webpack  with wordpress
+
+<details>
+<summary>
+View Content
+</summary>
+
+**Note:** This is assuming that you are using webpack **3.10.0** or version 3
+
+1. install npm if you haven't already 
+
+```
+npm init
+```
+
+2. install these dependencies 
+
+```
+npm i css-loader sass-loader node-sass postcss-loader autoprefixer extract-text-webpack-plugin  webpack --save-dev
+```
+
+3. create a config file 
+
+
+
+</details>
+
+
+[go back :house:][home]
 
 ### How to install a new wordpress 
 

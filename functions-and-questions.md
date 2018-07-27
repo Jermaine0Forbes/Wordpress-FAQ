@@ -1,6 +1,7 @@
 # Wordpress Functions and Questions
 
 - [_e()][e]
+- [add_action()][add-action]
 - [bloginfo()][blog-info]
 - [esc_attr()][esc-attr]
 - [esc_html_()][esc-html]
@@ -17,9 +18,12 @@
 - [is_front_page()][is-front-page]
 - [is_page_template()][is-page-template]
 - [post_class()][post-class]
+- [remove_action][remove-action]
 - [wp_list_pages()][list-pages]
 - [wp_list_categories()][list-categories]
 
+[remove-action]:#remove_action
+[add-action]:#add_action
 [list-categories]:#wp_list_categories
 [e]:#_e
 [list-categories]:#wp_list_categories
@@ -42,6 +46,40 @@
 [post-class]:#post_class
 [get-query]:#get_query_var
 
+
+### remove_action
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [codex](https://codex.wordpress.org/Function_Reference/remove_action)
+
+```php
+<?php remove_action( $tag, $function_to_remove, $priority ); ?>
+```
+</details>
+
+[go back :house:][home]
+
+### add_action
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/add_action/)
+
+```php
+add_action( string $tag, callable $function_to_add, int $priority = 10, int $accepted_args = 1 )
+```
+</details>
+
+[go back :house:][home]
 
 ### _e()
 

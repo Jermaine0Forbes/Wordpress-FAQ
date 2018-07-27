@@ -2,10 +2,17 @@
 
 ## 7/26/18
 
+### If you want to build your own theme
+
+Then go to choose starter theme from underscores, 
+or watch the lynda video "Wordpress: building themes from scratch using underscores"
+
 ### Things I need to look into 
 - yoast seo
-- simply wordpress hooks
-- look into post format
+- simply wordpress hooks : a plugin to be able to see what hooks are being used
+- look into post format : learn how to change post structure 
+- woocommerce colors : helps gets the colors ... i dont know
+- better font awesome: basically  a font awesome plugin
 
 
 ### Actions I need to look into
@@ -27,6 +34,8 @@
 - get_permalink(): returns the url by the id of the page
 - woocommerce_wp_text_input(): creates text input for product page tab
 - woocommerce_wp_select(): creates a selection where you can add different options
+- add_theme_support(): adds support for different functionality  
+- remove_action()
 
 
 

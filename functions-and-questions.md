@@ -17,11 +17,15 @@
 - [is_active_sidebar()][is-active-sidebar]
 - [is_front_page()][is-front-page]
 - [is_page_template()][is-page-template]
+- [is_user_logged_in][logged-in]
 - [post_class()][post-class]
 - [remove_action][remove-action]
 - [wp_list_pages()][list-pages]
 - [wp_list_categories()][list-categories]
+- [wp_nav_menu()][wp-nav-menu]
 
+[logged-in]:#is_user_logged_in
+[wp-nav-menu]:#wp_nav_menu
 [remove-action]:#remove_action
 [add-action]:#add_action
 [list-categories]:#wp_list_categories
@@ -47,6 +51,41 @@
 [get-query]:#get_query_var
 
 
+
+### is_user_logged_in
+
+<details>
+<summary>
+View Content
+</summary>
+Checks if the current visitor is a logged in user.
+
+```
+is_user_logged_in()
+```
+</details>
+
+[go back :house:][home]
+
+### wp_nav_menu
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [codex](https://developer.wordpress.org/reference/functions/wp_nav_menu/)
+
+**My definition:**  adds a nav menu that you created in the backend
+
+```php
+<?php wp_nav_menu( array $args = array() ); ?>
+```
+</details>
+
+[go back :house:][home]
+
 ### remove_action
 
 <details>
@@ -56,6 +95,8 @@ View Content
 
 **reference**
 - [codex](https://codex.wordpress.org/Function_Reference/remove_action)
+
+**My definition:** removes content from a specific action section
 
 ```php
 <?php remove_action( $tag, $function_to_remove, $priority ); ?>

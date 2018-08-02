@@ -1,6 +1,26 @@
 # Logs
 
+## 7/30/18
+
+
+### Shortcodes with WooCommerce 
+
+[Shortcodes included with WooCommerce](https://docs.woocommerce.com/document/woocommerce-shortcodes/)
+
+### What the hell is call_user_func 
+
+[PHP call_user_func vs. just calling function](https://stackoverflow.com/questions/1596221/php-call-user-func-vs-just-calling-function)
+
+### WooCommerce Product Filter  
+
+[WC Product Filter Tour](https://www.youtube.com/watch?v=Z7My8WsG11w)
+
 ## 7/27/18
+
+### adding custom logo 
+
+[wordpress](https://developer.wordpress.org/themes/functionality/custom-logo/)
+
 
 ### how to change custom logo 
 

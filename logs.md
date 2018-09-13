@@ -1,5 +1,19 @@
 # Logs
 
+##9/13/18
+
+### Add into functions 
+- register_uninstall_hook 
+- register_deactivate_hook 
+- register_activation_hook
+- add_option
+- delete_option
+
+### Look into pluggable functions 
+
+I believe they are wordpress functions that you can override and add to your plugins
+
+
 ## 7/30/18
 
 

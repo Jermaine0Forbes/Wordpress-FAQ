@@ -1,15 +1,39 @@
 # Logs
 
-##9/13/18
+## 9/14/18
 
-### Add into functions 
-- register_uninstall_hook 
-- register_deactivate_hook 
+### Validation Functions
+- is_email : checks if email is valid
+- term_exists: checks if term exists
+- username_exists
+
+### Sanitization functions
+- sanitize_emal
+- sanitize_text_field
+- sanitize_user
+
+### Reseaerch what the fuck is "Nonces"
+
+also look it this/these functions
+- wp_nonce_field
+- wp_verify_nonce
+
+### Look into wordpress boilerplates to get started coding plugins
+It should go without saying to search for these keywords on the internet
+
+- wordpress plugin boilerplate
+- wp skeleton plugin
+
+## 9/13/18
+
+### Add into functions
+- register_uninstall_hook
+- register_deactivate_hook
 - register_activation_hook
 - add_option
 - delete_option
 
-### Look into pluggable functions 
+### Look into pluggable functions
 
 I believe they are wordpress functions that you can override and add to your plugins
 
@@ -17,11 +41,11 @@ I believe they are wordpress functions that you can override and add to your plu
 ## 7/30/18
 
 
-### Shortcodes with WooCommerce 
+### Shortcodes with WooCommerce
 
 [Shortcodes included with WooCommerce](https://docs.woocommerce.com/document/woocommerce-shortcodes/)
 
-### What the hell is call_user_func 
+### What the hell is call_user_func
 
 [PHP call_user_func vs. just calling function](https://stackoverflow.com/questions/1596221/php-call-user-func-vs-just-calling-function)
 
@@ -31,12 +55,12 @@ I believe they are wordpress functions that you can override and add to your plu
 
 ## 7/27/18
 
-### adding custom logo 
+### adding custom logo
 
 [wordpress](https://developer.wordpress.org/themes/functionality/custom-logo/)
 
 
-### how to change custom logo 
+### how to change custom logo
 
 [answer](https://wordpress.stackexchange.com/questions/229905/how-to-add-css-class-to-custom-logo)
 
@@ -58,13 +82,13 @@ function change_logo_class( $html ) {
 
 ### If you want to build your own theme
 
-Then go to choose starter theme from underscores, 
+Then go to choose starter theme from underscores,
 or watch the lynda video "Wordpress: building themes from scratch using underscores"
 
-### Things I need to look into 
+### Things I need to look into
 - yoast seo
 - simply wordpress hooks : a plugin to be able to see what hooks are being used
-- look into post format : learn how to change post structure 
+- look into post format : learn how to change post structure
 - woocommerce colors : helps gets the colors ... i dont know
 - better font awesome: basically  a font awesome plugin
 
@@ -98,5 +122,3 @@ or watch the lynda video "Wordpress: building themes from scratch using undersco
 - woocommerce_settings_tabs_array
 - woocommerce-opening-hours
 - woocommerce_product_data_tabs
-
-

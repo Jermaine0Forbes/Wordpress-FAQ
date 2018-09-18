@@ -1,8 +1,8 @@
 
-# Plugins 
+# Plugins
 
 ## Useful Plugins
 - Simply Show Hooks
-- Yoast
+- Yoast SEO
 
 [home]:#plugins

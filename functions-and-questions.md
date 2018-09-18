@@ -11,11 +11,12 @@
 - [get_template_part()][get-template]
 - [get_theme_mod()][get-theme]
 - [get_query_var()][get-query]
-- [has_header_image][has-header-image] 
+- [has_header_image][has-header-image]
 - [header_image][header-image]
 - [home_url()][home-url]
 - [is_active_sidebar()][is-active-sidebar]
 - [is_front_page()][is-front-page]
+- [is_email()][is-email]
 - [is_page_template()][is-page-template]
 - [is_user_logged_in][logged-in]
 - [post_class()][post-class]
@@ -23,7 +24,7 @@
 - [wp_list_pages()][list-pages]
 - [wp_list_categories()][list-categories]
 - [wp_nav_menu()][wp-nav-menu]
-
+[is-email]:#is_email
 [logged-in]:#is_user_logged_in
 [wp-nav-menu]:#wp_nav_menu
 [remove-action]:#remove_action
@@ -50,6 +51,22 @@
 [post-class]:#post_class
 [get-query]:#get_query_var
 
+### is_email
+
+<details>
+<summary>
+View Content
+</summary>
+Verifies that an email is valid.
+
+```php
+
+<?php is_email( $email ) ?>
+
+```
+</details>
+
+[go back :house:][home]
 
 
 ### is_user_logged_in
@@ -194,9 +211,9 @@ add_action( string $tag, callable $function_to_add, int $priority = 10, int $acc
 ```php
 <ul>
 <?php wp_list_pages( array(
-   
+
     //This displays the Pages with the id of 5,9,23
-    'include'  => array( 5, 9, 23 ), 
+    'include'  => array( 5, 9, 23 ),
 
     // This displays a title of Poetry before generating the list
     'title_li' => '<h2>' . __('Poetry') . '</h2>'
@@ -250,7 +267,7 @@ Retrieve the format slug for a post
 ```php
 /*
  * Pull in a different sub-template, depending on the Post Format.
- * 
+ *
  * Make sure that there is a default format.php file to fall back to as a default.
  * Name templates format-link.php, format-aside.php, etc.
  *
@@ -473,10 +490,10 @@ Is the query for an existing single page?
 
 // When any single Page is being displayed.
 is_page();
- 
+
 // When Page 42 (ID) is being displayed.
 is_page( 42 );
- 
+
 // When the Page with a post_title of "Contact" is being displayed.
 is_page( 'Contact' );
 ```
@@ -508,7 +525,7 @@ if ( is_home() ) {
 
 ### How to check if you are on front page
 
-`is_front_page()` 
+`is_front_page()`
 
 Checks to see if it is the front page
 
@@ -520,7 +537,7 @@ Checks to see if it is the front page
 
 <?php if(is_front_page()) {?>
 
-    // Do something 
+    // Do something
 
 <?php  } ?>
 
@@ -542,4 +559,3 @@ Checks to see if it is the front page
 ```
 
 [go back home][home]
-

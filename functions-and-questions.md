@@ -21,9 +21,13 @@
 - [is_user_logged_in][logged-in]
 - [post_class()][post-class]
 - [remove_action][remove-action]
+- [term_exists()][term-exists]
+- [username_exists()][username-exists]
 - [wp_list_pages()][list-pages]
 - [wp_list_categories()][list-categories]
 - [wp_nav_menu()][wp-nav-menu]
+
+[term-exists]:#term_exists
 [is-email]:#is_email
 [logged-in]:#is_user_logged_in
 [wp-nav-menu]:#wp_nav_menu
@@ -50,6 +54,37 @@
 [get-post-format]:#get_post_format
 [post-class]:#post_class
 [get-query]:#get_query_var
+
+
+### username_exists
+<details>
+  <summary>
+  View Content
+  </summary>
+
+  Returns the user ID if the user exists or false if the user doesn't exist.
+
+```php
+<?php username_exists( $username ); ?>
+```
+</details>
+
+[go back :house:][home]
+
+### term_exists
+<details>
+  <summary>
+  View Content
+  </summary>
+
+  Check if a given term exists and return the term ID, a term array, or 0 (false) if the term doesn't exist.
+
+```php
+<?php term_exists( $term, $taxonomy, $parent ) ?>
+```
+</details>
+
+[go back :house:][home]
 
 ### is_email
 

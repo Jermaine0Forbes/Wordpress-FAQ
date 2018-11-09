@@ -243,78 +243,78 @@ sudo cp -a /tmp/wordpress/. /var/www/html
   </summary>
 
 
-	` echo paginate_links(array("total" => $the_query->max_num_pages));`
+` echo paginate_links(array("total" => $the_query->max_num_pages));`
 
-	**reference**
-	- [WordPress Pagination Tutorial (Custom Query & Template Integration)](https://www.youtube.com/watch?v=HMscydyViZw)
-	- [paginate_links](https://developer.wordpress.org/reference/functions/paginate_links/)
+**reference**
+- [WordPress Pagination Tutorial (Custom Query & Template Integration)](https://www.youtube.com/watch?v=HMscydyViZw)
+- [paginate_links](https://developer.wordpress.org/reference/functions/paginate_links/)
 
-	**paginate_links()**
-	```
-	    <?php
+**paginate_links()**
+```
+    <?php
 
-	    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
-	    $args = array(
-	   'post_type' => 'post', //must use tag id for this field
-	   'posts_per_page' => 3,
-	   "paged" => $paged,
+    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+    $args = array(
+   'post_type' => 'post', //must use tag id for this field
+   'posts_per_page' => 3,
+   "paged" => $paged,
 
-	 ); //get all posts
-
-
-	 // the query
-	 $the_query = new WP_Query( $args ); ?>
-
-	 <?php if ( $the_query->have_posts() ) : ?>
-
-	 	<!-- pagination here -->
-
-	 	<!-- the loop -->
-	 	<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-	        <div class="border border-bottom-0 text-center">
-	            <h2><?php the_title(); ?></h2>
-	            <p><?php the_content(); ?></p>
-	        </div>
-
-	 	<?php endwhile; ?>
-	 	<!-- end of the loop -->
-
-	 	<!-- pagination here -->
-	    <?php
-
-	        //previous_posts_link();
-	       echo paginate_links(array(
-	           "total" => $the_query->max_num_pages
-	       ));
-	        //next_posts_link("Next post", $the_query->max_num_pages);
-
-	     ?>
-
-	 	<?php wp_reset_postdata(); ?>
+ ); //get all posts
 
 
+ // the query
+ $the_query = new WP_Query( $args ); ?>
 
-	 <?php else : ?>
-	 	<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
-	 <?php
-	    endif;
-	 ?>
+ <?php if ( $the_query->have_posts() ) : ?>
 
-	```
+ 	<!-- pagination here -->
 
-	**next_posts_link()**
-	```php
+ 	<!-- the loop -->
+ 	<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+        <div class="border border-bottom-0 text-center">
+            <h2><?php the_title(); ?></h2>
+            <p><?php the_content(); ?></p>
+        </div>
+
+ 	<?php endwhile; ?>
+ 	<!-- end of the loop -->
+
+ 	<!-- pagination here -->
+    <?php
+
+        //previous_posts_link();
+       echo paginate_links(array(
+           "total" => $the_query->max_num_pages
+       ));
+        //next_posts_link("Next post", $the_query->max_num_pages);
+
+     ?>
+
+ 	<?php wp_reset_postdata(); ?>
 
 
-	//If you want to only next and previous arrow links then
-	//this is how you do it
 
-	        previous_posts_link();
+ <?php else : ?>
+ 	<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
+ <?php
+    endif;
+ ?>
 
-	        next_posts_link("Next post", $the_query->max_num_pages);
+```
+
+**next_posts_link()**
+```php
 
 
-	```
+//If you want to only next and previous arrow links then
+//this is how you do it
+
+        previous_posts_link();
+
+        next_posts_link("Next post", $the_query->max_num_pages);
+
+
+```
 
 </details>
 
@@ -329,28 +329,28 @@ sudo cp -a /tmp/wordpress/. /var/www/html
   View Content
   </summary>
 
-	`get_theme_file_uri( string $file = '' )`
+`get_theme_file_uri( string $file = '' )`
 
-	This method essential if you are trying to get root folder or your
-	child theme, in order to retrieve a js or css file
+This method essential if you are trying to get root folder or your
+child theme, in order to retrieve a js or css file
 
-	**reference**
-	- [wordpress](https://developer.wordpress.org/reference/functions/get_theme_file_uri/)
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/get_theme_file_uri/)
 
-	```php
-	//in functions.php
+```php
+//in functions.php
 
-	function my_theme_enqueue_scripts() {
-	    wp_enqueue_script( 'js-stick', get_theme_file_uri().'/js/scrollfix.js');
-	    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/index.js');
-
-
-	}
+function my_theme_enqueue_scripts() {
+    wp_enqueue_script( 'js-stick', get_theme_file_uri().'/js/scrollfix.js');
+    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/index.js');
 
 
-	add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
+}
 
-	```
+
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
+
+```
 
 </details>
 
@@ -364,145 +364,142 @@ sudo cp -a /tmp/wordpress/. /var/www/html
   View Content
   </summary>
 
-	Here are the typical ways to query posts/pages from the **WP_Query** class
+Here are the typical ways to query posts/pages from the **WP_Query** class
 
-	**reference**
-	- [codex](https://codex.wordpress.org/Class_Reference/WP_Query)
+**reference**
+- [codex](https://codex.wordpress.org/Class_Reference/WP_Query)
 
-	#### Standard Loop
+#### Standard Loop
 
-	```
+```
 
-	<?php
+<?php
 
-	// The Query
-	$the_query = new WP_Query( $args );
+// The Query
+$the_query = new WP_Query( $args );
 
+// The Loop
+if ( $the_query->have_posts() ) {
+	echo '<ul>';
+	while ( $the_query->have_posts() ) {
+		$the_query->the_post();
+		echo '<li>' . get_the_title() . '</li>';
+	}
+	echo '</ul>';
+	/* Restore original Post Data */
+	wp_reset_postdata();
+} else {
+	// no posts found
+}
+```
+
+#### Standard Loop 2
+
+```
+<?php
+// the query
+$the_query = new WP_Query( $args ); ?>
+
+<?php if ( $the_query->have_posts() ) : ?>
+
+	<!-- pagination here -->
+
+	<!-- the loop -->
+	<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+		<h2><?php the_title(); ?></h2>
+	<?php endwhile; ?>
+	<!-- end of the loop -->
+
+	<!-- pagination here -->
+
+	<?php wp_reset_postdata(); ?>
+
+<?php else : ?>
+	<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
+<?php endif; ?>
+
+```
+
+#### Standard Loop 3
+
+```
+
+    <?php
+    global $wp_query;
+    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+    $args = array(
+   'post_type' => 'post', //must use tag id for this field
+   'posts_per_page' => 3,
+   "paged" => $paged,
+
+ ); //get all posts
+
+    $posts = get_posts($args);
+
+     ?>
+
+     <?php
+     foreach ($posts as $post) :
+         //$post->the_post();
+      ?>
+
+      <div class=" border border-bottom-0 row justify-content-center">
+          <div class="col text-center">
+
+              <h4><?php echo $post->post_title; ?></h4>
+              <p><?php echo $post->post_content;  ?></p>
+          </div>
+      </div>
+
+ <?php
+ endforeach;
+
+   ?>
+```
+
+#### Multiple Loops
+
+```
+
+
+// The Query
+$query1 = new WP_Query( $args );
+
+if ( $query1->have_posts() ) {
 	// The Loop
-	if ( $the_query->have_posts() ) {
-		echo '<ul>';
-		while ( $the_query->have_posts() ) {
-			$the_query->the_post();
-			echo '<li>' . get_the_title() . '</li>';
-		}
-		echo '</ul>';
-		/* Restore original Post Data */
-		wp_reset_postdata();
-	} else {
-		// no posts found
-	}
-	```
-
-	#### Standard Loop 2
-
-	```
-	<?php
-	// the query
-	$the_query = new WP_Query( $args ); ?>
-
-	<?php if ( $the_query->have_posts() ) : ?>
-
-		<!-- pagination here -->
-
-		<!-- the loop -->
-		<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-			<h2><?php the_title(); ?></h2>
-		<?php endwhile; ?>
-		<!-- end of the loop -->
-
-		<!-- pagination here -->
-
-		<?php wp_reset_postdata(); ?>
-
-	<?php else : ?>
-		<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
-	<?php endif; ?>
-
-	```
-
-	#### Standard Loop 3
-
-	```
-
-	    <?php
-	    global $wp_query;
-	    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
-	    $args = array(
-	   'post_type' => 'post', //must use tag id for this field
-	   'posts_per_page' => 3,
-	   "paged" => $paged,
-
-	 ); //get all posts
-
-	    $posts = get_posts($args);
-
-	     ?>
-
-	     <?php
-	     foreach ($posts as $post) :
-	         //$post->the_post();
-	      ?>
-
-	      <div class=" border border-bottom-0 row justify-content-center">
-	          <div class="col text-center">
-
-	              <h4><?php echo $post->post_title; ?></h4>
-	              <p><?php echo $post->post_content;  ?></p>
-	          </div>
-	      </div>
-
-	 <?php
-	 endforeach;
-
-	   ?>
-	```
-
-	#### Multiple Loops
-
-	```
-
-
-	// The Query
-	$query1 = new WP_Query( $args );
-
-	if ( $query1->have_posts() ) {
-		// The Loop
-		while ( $query1->have_posts() ) {
-			$query1->the_post();
-			echo '<li>' . get_the_title() . '</li>';
-		}
-
-		/* Restore original Post Data
-		 * NB: Because we are using new WP_Query we aren't stomping on the
-		 * original $wp_query and it does not need to be reset with
-		 * wp_reset_query(). We just need to set the post data back up with
-		 * wp_reset_postdata().
-		 */
-		wp_reset_postdata();
+	while ( $query1->have_posts() ) {
+		$query1->the_post();
+		echo '<li>' . get_the_title() . '</li>';
 	}
 
-	/* The 2nd Query (without global var) */
-	$query2 = new WP_Query( $args2 );
+	/* Restore original Post Data
+	 * NB: Because we are using new WP_Query we aren't stomping on the
+	 * original $wp_query and it does not need to be reset with
+	 * wp_reset_query(). We just need to set the post data back up with
+	 * wp_reset_postdata().
+	 */
+	wp_reset_postdata();
+}
 
-	if ( $query2->have_posts() ) {
-		// The 2nd Loop
-		while ( $query2->have_posts() ) {
-			$query2->the_post();
-			echo '<li>' . get_the_title( $query2->post->ID ) . '</li>';
-		}
+/* The 2nd Query (without global var) */
+$query2 = new WP_Query( $args2 );
 
-		// Restore original Post Data
-		wp_reset_postdata();
+if ( $query2->have_posts() ) {
+	// The 2nd Loop
+	while ( $query2->have_posts() ) {
+		$query2->the_post();
+		echo '<li>' . get_the_title( $query2->post->ID ) . '</li>';
 	}
 
+	// Restore original Post Data
+	wp_reset_postdata();
+}
 
 
-	```
+
+```
 
 </details>
-
-
-
 
 [go back home][home]
 
@@ -512,28 +509,28 @@ sudo cp -a /tmp/wordpress/. /var/www/html
   <summary>
   View Content
   </summary>
-	**reference**
-	- [TypeError: $ is not a function Wordpress](https://stackoverflow.com/questions/12258282/typeerror-is-not-a-function-wordpress)
+**reference**
+- [TypeError: $ is not a function Wordpress](https://stackoverflow.com/questions/12258282/typeerror-is-not-a-function-wordpress)
 
-	```js
-	jQuery( document ).ready(function( $ ) {
-	// Code that uses jQuery's $ can follow here.
-	$('.site-title').css('background-color','red');
-	});
-	```
+```js
+jQuery( document ).ready(function( $ ) {
+// Code that uses jQuery's $ can follow here.
+$('.site-title').css('background-color','red');
+});
+```
 
-	**Note:** make sure in `functions.php` you add jquery in the wp_enqueue_script parameter
+**Note:** make sure in `functions.php` you add jquery in the wp_enqueue_script parameter
 
-	```
-	<?php
+```
+<?php
 
-	add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
 
-	function my_theme_enqueue_scripts() {
-	    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/main.js', array("jquery") );
+function my_theme_enqueue_scripts() {
+    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/main.js', array("jquery") );
 
-	}
-	```
+}
+```
 </details>
 
 [go back home][home]
@@ -545,12 +542,12 @@ sudo cp -a /tmp/wordpress/. /var/www/html
   View Content
   </summary>
 
-	**reference**
-	- [contact form 7](https://contactform7.com/setting-placeholder-text/)
+**reference**
+- [contact form 7](https://contactform7.com/setting-placeholder-text/)
 
-	```php
-	[text your-name placeholder "Enter Name"]
-	```
+```php
+[text your-name placeholder "Enter Name"]
+```
 </details>
 
 [go back :house:][home]
@@ -563,30 +560,30 @@ sudo cp -a /tmp/wordpress/. /var/www/html
   View Content
   </summary>
 
-	**reference**
-	- [tutplus](https://code.tutsplus.com/articles/how-to-include-javascript-and-css-in-your-wordpress-themes-and-plugins--wp-24321)
+**reference**
+- [tutplus](https://code.tutsplus.com/articles/how-to-include-javascript-and-css-in-your-wordpress-themes-and-plugins--wp-24321)
 
-	```php
-	function wptuts_scripts_load_cdn()
-	{
-	    // Deregister the included library
-	    wp_deregister_script( 'jquery' );
+```php
+function wptuts_scripts_load_cdn()
+{
+    // Deregister the included library
+    wp_deregister_script( 'jquery' );
 
-	    // Register the library again from Google's CDN
-	    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', array(), null, false );
+    // Register the library again from Google's CDN
+    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', array(), null, false );
 
-	    // Register the script like this for a plugin:
-	    wp_register_script( 'custom-script', plugins_url( '/js/custom-script.js', __FILE__ ), array( 'jquery' ) );
-	    // or
-	    // Register the script like this for a theme:
-	    wp_register_script( 'custom-script', get_template_directory_uri() . '/js/custom-script.js', array( 'jquery' ) );
+    // Register the script like this for a plugin:
+    wp_register_script( 'custom-script', plugins_url( '/js/custom-script.js', __FILE__ ), array( 'jquery' ) );
+    // or
+    // Register the script like this for a theme:
+    wp_register_script( 'custom-script', get_template_directory_uri() . '/js/custom-script.js', array( 'jquery' ) );
 
-	    // For either a plugin or a theme, you can then enqueue the script:
-	    wp_enqueue_script( 'custom-script' );
-	}
-	add_action( 'wp_enqueue_scripts', 'wptuts_scripts_load_cdn' );
+    // For either a plugin or a theme, you can then enqueue the script:
+    wp_enqueue_script( 'custom-script' );
+}
+add_action( 'wp_enqueue_scripts', 'wptuts_scripts_load_cdn' );
 
-	```
+```
 
 </details>
 
@@ -600,21 +597,21 @@ sudo cp -a /tmp/wordpress/. /var/www/html
   View Content
   </summary>
 
-	**reference**
-	- [codex](https://codex.wordpress.org/Class_Reference/WP_Post)
+**reference**
+- [codex](https://codex.wordpress.org/Class_Reference/WP_Post)
 
-	Member Variable|Variable Type|Notes
-	-|-|-
-	ID|int|The ID of the post
-	post_author|string|The post author's user ID (numeric string)  
-	post_name|string|The post's slug   
-	post_type|string|[post types](https://codex.wordpress.org/Post_Types)  
-	post_title|string|The title of the post  
-	post_date|string|Format: 0000-00-00 00:00:00  
-	post_date_gmt|string|Format: 0000-00-00 00:00:00  
-	post_content|string| The full content of the post   
-	post_excerpt|string| User-defined post excerpt   
-	post_status|string|[get_post_status](https://codex.wordpress.org/Function_Reference/get_post_status)  
+Member Variable|Variable Type|Notes
+-|-|-
+ID|int|The ID of the post
+post_author|string|The post author's user ID (numeric string)  
+post_name|string|The post's slug   
+post_type|string|[post types](https://codex.wordpress.org/Post_Types)  
+post_title|string|The title of the post  
+post_date|string|Format: 0000-00-00 00:00:00  
+post_date_gmt|string|Format: 0000-00-00 00:00:00  
+post_content|string| The full content of the post   
+post_excerpt|string| User-defined post excerpt   
+post_status|string|[get_post_status](https://codex.wordpress.org/Function_Reference/get_post_status)  
 
 
 </details>
@@ -622,6 +619,11 @@ sudo cp -a /tmp/wordpress/. /var/www/html
 [go back home][home]
 
 ### Wordpress function reference
+
+<details>
+  <summary>
+  View Content
+  </summary>
 
 There are a lot of functions in this bitch, so I am only going to
 focus on **Post, Custom Post Type, Page, Attachment and Bookmarks Functions**
@@ -667,9 +669,16 @@ focus on **Post, Custom Post Type, Page, Attachment and Bookmarks Functions**
 - [has_excerpt]()
 - [has_post_format]()
 
+</details>
+
 [go back home][home]
 
 ### How to use add_action and do_action
+
+<details>
+  <summary>
+  View Content
+  </summary>
 
 Actions are the hooks that the WordPress core launches at specific points during execution, or when specific events occur. Plugins can specify that one or more of its PHP functions are executed at these points, using the Action API.
 
@@ -684,15 +693,21 @@ Actions are the hooks that the WordPress core launches at specific points during
 
 add_action( 'save_post', 'wpdocs_my_save_post', 10, 3 );
 ```
+</details>
 
 [go back home][home]
 
 ### How to get src of  feature imaged post
 
+<details>
+  <summary>
+  View Content
+  </summary>
+
 **reference**
 - [source](https://codex.wordpress.org/Function_Reference/the_post_thumbnail_url)
 
-```php
+```
 <?php if ( has_post_thumbnail() ) : ?>
 	<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 	<img src="<?php the_post_thumbnail_url(); ?>"/>
@@ -701,17 +716,21 @@ add_action( 'save_post', 'wpdocs_my_save_post', 10, 3 );
 
 
 ```
+</details>
 
 [go back home][home]
 
 ### The List of WP_Query arguments
 
+<details>
+  <summary>
+  View Content
+  </summary>
+
 **reference**
 - [source](http://www.billerickson.net/code/wp_query-arguments/)
 
-```php
-
-<?php
+```
 /**
 * WordPress Query Comprehensive Reference
 * Compiled by luetkemj - luetkemj.com
@@ -881,25 +900,38 @@ endwhile;
 endif;
 // Reset Post Data
 wp_reset_postdata();
-?>
+
 ```
+</details>
+
+
 
 [go back home][home]
 
 ### How to get the parent category of a child category while looping through $query->have_posts()
 
-**reference**
-- [source](http://www.wpbeginner.com/wp-themes/how-to-display-only-parent-category-in-your-wordpress-post-loop/)
+<details>
+  <summary>
+  View Content
+  </summary>
+	**reference**
+	- [source](http://www.wpbeginner.com/wp-themes/how-to-display-only-parent-category-in-your-wordpress-post-loop/)
 
-```php
+	```
 
 
-```
+	```
+
+</details>
 
 [go back home][home]
 
 ### How to get all posts from category
 
+<details>
+  <summary>
+  View Content
+  </summary>
 **reference**
 - [source](http://wordpress.stackexchange.com/questions/4201/how-to-query-posts-by-category-and-tag)
 
@@ -930,16 +962,21 @@ $posts = get_posts($args);
      endforeach;
 
 ```
+</details>
 
 [go back home][home]
 
 ### Template Tags to use for your blog template OR while looping through a post
 
+<details>
+  <summary>
+  View Content
+  </summary>
 **reference**
 - [codex](https://codex.wordpress.org/Template_Tags)
 
 
-```php
+```
 <?php $args = array(
 	'posts_per_page'   => 5,
 	'offset'           => 0,
@@ -963,40 +1000,61 @@ $posts_array = get_posts( $args ); ?>
 
 ```
 
+</details>
+
 [go back home][home]
 
 ### How to turn on wordpress debug messages
 
-In the wp-config.php file, add this code
+<details>
+  <summary>
+  View Content
+  </summary>
 
-**reference**
-- [source](https://codex.wordpress.org/Debugging_in_WordPress)
+	In the wp-config.php file, add this code
+
+	**reference**
+	- [source](https://codex.wordpress.org/Debugging_in_WordPress)
 
 
 
-```php
-define( 'WP_DEBUG', true );
+	```php
+	define( 'WP_DEBUG', true );
 
-```
+	```
+</details>
 
 [go back home][home]
 
 ### How to remove “Powered by Wordpress” in footer
 
-**reference**
-- [source](http://www.wpbeginner.com/wp-themes/how-to-remove-the-powered-by-wordpress-footer-links/)
+<details>
+  <summary>
+  View Content
+  </summary>
+
+	**reference**
+	- [source](http://www.wpbeginner.com/wp-themes/how-to-remove-the-powered-by-wordpress-footer-links/)
 
 
-1. Go to **footer.php** and comment out the `get_template_part()` that  has footer
+	1. Go to **footer.php** and comment out the `get_template_part()` that  has footer
 
-```php
-// get_template_part(‘template-parts/footer/site’, ‘info’);
+	```php
+	// get_template_part(‘template-parts/footer/site’, ‘info’);
 
-```
+	```
+
+</details>
 
 [go back home][home]
 
 ### How to customize login form
+
+<details>
+  <summary>
+  View Content
+  </summary>
+
 
 If you want to change the style of the wordpress login form here
 are a couple of ways of doing it.
@@ -1005,7 +1063,7 @@ are a couple of ways of doing it.
 - [source](https://codex.wordpress.org/Customizing_the_Login_Form)
 
 **To create an inline style sheet to change login**
-```php
+```
 function my_login_logo() { ?>
     <style type="text/css">
         #login h1 a, .login h1 a {
@@ -1032,37 +1090,56 @@ function my_login_stylesheet() {
 add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
 ```
 
+</details>
+
 [go back home][home]
 
 ### How to get posts with get_posts
 
-**reference**
-- [source](https://codex.wordpress.org/Template_Tags/get_posts)
+<details>
+  <summary>
+  View Content
+  </summary>
+	**reference**
+	- [source](https://codex.wordpress.org/Template_Tags/get_posts)
 
 
-```php
+	```php
 
 
-```
+	```
+</details>
+
 
 [go back home][home]
 
 
 ### how to create a page template
 
-**reference**
-- [wordpress](https://developer.wordpress.org/themes/template-files-section/page-template-files/)
+<details>
+  <summary>
+  View Content
+  </summary>
 
-**Inside your page template add this**
-```php
 
-<?php /* Template Name: Example Template */ ?>
-```
+	**reference**
+	- [wordpress](https://developer.wordpress.org/themes/template-files-section/page-template-files/)
+
+	**Inside your page template add this**
+	```
+
+	<?php /* Template Name: Example Template */ ?>
+	```
+</details>
 
 [go back home][home]
 
 ### how to change siteurl from old domain
 
+<details>
+  <summary>
+  View Content
+  </summary>
 **reference**
 - [Redirecting to old domain after migration](https://wordpress.stackexchange.com/questions/187574/redirecting-to-old-domain-after-migration)
 
@@ -1081,9 +1158,17 @@ update wp_options set option_value = "yourNewDomain.com" where option_name = "ho
 ```
 3. Once you change the names to your domain, everything will be all good.
 
+</details>
+
 [go back home][home]
 
 ### how to customize a sidebar
+
+<details>
+  <summary>
+  View Content
+  </summary>
+
 **reference**
 - [customizing sidebars](https://codex.wordpress.org/Customizing_Your_Sidebar)
 - [Sidebars](https://developer.wordpress.org/themes/functionality/sidebars/)
@@ -1092,20 +1177,32 @@ update wp_options set option_value = "yourNewDomain.com" where option_name = "ho
 
 
 ```
+</details>
+
 [go back home][home]
 
 ### what does the template hierarchy look like
 
+<details>
+  <summary>
+  View Content
+  </summary>
 **reference**
 - [interactive hierarchy map](https://wphierarchy.com/)
 - [template-hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/)
 
 ![idk](https://developer.wordpress.org/files/2014/10/wp-hierarchy.png)
 
+</details>
+
 [go back home][home]
 
 ### how to allow installation of plugins/themes
 
+<details>
+  <summary>
+  View Content
+  </summary>
 **reference**
 - [How do I enable Wordpress to update itself through its back end?](https://www.digitalocean.com/community/questions/how-do-i-enable-wordpress-to-update-itself-through-its-back-end)
 
@@ -1135,11 +1232,16 @@ find /var/www/sitename.com -type d -exec chmod g+s {} \;
 define( 'FS_METHOD', 'direct' );
 ```
 
+</details>
+
 [go back home][home]
 
 ### how to add css/js files
 
-
+<details>
+  <summary>
+  View Content
+  </summary>
 **To add css**
 ```
 wp_enqueue_style( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, string $media = 'all' )
@@ -1167,7 +1269,7 @@ function my_theme_enqueue_styles() {
 
 ```
 **This gets the child theme**
-```php
+```
 // in functions.php add this
 
 <?php
@@ -1181,10 +1283,18 @@ function my_theme_enqueue_scripts() {
 
 
 ```
+</details>
+
+
 [go back home][home]
 
 
 ### how to create a child theme
+
+<details>
+  <summary>
+  View Content
+  </summary>
 
 **reference**
 - [child theme](https://codex.wordpress.org/Child_Themes)
@@ -1273,11 +1383,18 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 6. and then activate the child theme
 
+</details>
+
+
 [go back home][home]
 
 
 ### how to install wordpress
 
+<details>
+  <summary>
+  View Content
+  </summary>
 1. log into mysql and type this into the terminal
 
 ```mysql
@@ -1364,5 +1481,8 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	define('FS_METHOD', 'direct');
 ```
 10. Setup the apache server to host the wordpress, and then you are done
+
+</details>
+
 
 [go back home][home]

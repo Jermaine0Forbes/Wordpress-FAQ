@@ -10,7 +10,7 @@
 - add_filter
 - add_menu_page
 - [add_options_page][add-options-page]
-- add_settings_field
+- [add_settings_field][add-settings-field]
 - add_settings_section
 - add_submenu_page
 - current_user_can
@@ -30,8 +30,32 @@
 
 
 [home]:#plugins
-[add-options-page]:#addoptionspage
-[register-setting]:#registersetting
+[add-settings-field]:#add_settings_field
+[add-options-page]:#add_options_page
+[register-setting]:#register_setting
+
+### add_settings_field
+<details>
+  <summary>
+  View Content
+  </summary>
+
+  **reference**
+  - [wordpress](https://developer.wordpress.org/reference/functions/add_settings_field/)
+
+```php
+add_settings_field( 'myprefix_setting-id',
+    'This is the setting title',
+    'myprefix_setting_callback_function',
+    'general',
+    'myprefix_settings-section-name',
+    array( 'label_for' => 'myprefix_setting-id' ) );
+```
+</details>
+
+[go back :house:][home]
+
+
 
 ### register_setting
 <details>

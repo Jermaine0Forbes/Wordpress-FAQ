@@ -152,86 +152,84 @@ npm i css-loader sass-loader node-sass postcss-loader autoprefixer extract-text-
 [go back :house:][home]
 
 ### How to install a new wordpress
-
-
 <details>
   <summary>
   View Content
   </summary>
 
-	1. create a database
+1. create a database
 
-	```sql
-	CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-	```
-	2. update linux
+```sql
+CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+```
+2. update linux
 
-	```
-	sudo apt-get update
-	```
+```
+sudo apt-get update
+```
 
-	3. create a conf for your wordpress site
+3. create a conf for your wordpress site
 
-	```
-	sudo nano /etc/apache2/wordpress.conf
+```
+sudo nano /etc/apache2/wordpress.conf
 
-		// add this into the file
+	// add this into the file
 
-		<Directory /var/www/html/>
-	    	AllowOverride All
-		</Directory>
-	```
+	<Directory /var/www/html/>
+    	AllowOverride All
+	</Directory>
+```
 
-	4. activate the conf file and restart apache
+4. activate the conf file and restart apache
 
-	```
-	sudo a2ensite wordpress.conf ; sudo service apache2 reload; sudo service apache2 restart;
-	```
+```
+sudo a2ensite wordpress.conf ; sudo service apache2 reload; sudo service apache2 restart;
+```
 
-	5. encrypt the address with Let's Encrypt
+5. encrypt the address with Let's Encrypt
 
-	```
-	sudo certbot --apache -d example.com
-	```
+```
+sudo certbot --apache -d example.com
+```
 
-	6. copy wordpress files to new location
+6. copy wordpress files to new location
 
-	```
-	sudo cp -a /tmp/wordpress/. /var/www/html
-	```
+```
+sudo cp -a /tmp/wordpress/. /var/www/html
+```
 
-	7. configure wordpress
-	```
-		sudo chown -R yourName:www-data /var/www/html;
-		sudo find /var/www/html -type d -exec chmod g+s {} \;
-		sudo chmod g+w /var/www/html/wp-content;
-		sudo chmod -R g+w /var/www/html/wp-content/themes;
-		sudo chmod -R g+w /var/www/html/wp-content/plugins;
-	```
+7. configure wordpress
+```
+	sudo chown -R yourName:www-data /var/www/html;
+	sudo find /var/www/html -type d -exec chmod g+s {} \;
+	sudo chmod g+w /var/www/html/wp-content;
+	sudo chmod -R g+w /var/www/html/wp-content/themes;
+	sudo chmod -R g+w /var/www/html/wp-content/plugins;
+```
 
-	8. now, create the keys and passwords
+8. now, create the keys and passwords
 
-	```
-	// copy the printed keys
-		curl -s https://api.wordpress.org/secret-key/1.1/salt/
+```
+// copy the printed keys
+	curl -s https://api.wordpress.org/secret-key/1.1/salt/
 
-		sudo nano /var/www/html/wp-config.php
+	sudo nano /var/www/html/wp-config.php
 
-		// place the printed keys in the file
-		// and add in the database information  like this
+	// place the printed keys in the file
+	// and add in the database information  like this
 
-		define('DB_NAME', 'wordpress');
+	define('DB_NAME', 'wordpress');
 
-		/** MySQL database username */
-		define('DB_USER', 'wordpressuser');
+	/** MySQL database username */
+	define('DB_USER', 'wordpressuser');
 
-		/** MySQL database password */
-		define('DB_PASSWORD', 'password');
+	/** MySQL database password */
+	define('DB_PASSWORD', 'password');
 
-		. . .
+	. . .
 
-		define('FS_METHOD', 'direct');
-	```
+	define('FS_METHOD', 'direct');
+```
 
 </details>
 

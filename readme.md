@@ -41,13 +41,15 @@
 ## Plugins
 - [how to allow installation of plugins/themes][allow-install]
 - [how to set placeholder text in contact form 7][form-place]
+- [how to change the icon for your plugin][plugin-icon]
 
 ## Settings
 - [How to turn on wordpress debug messages][debug]
 
-## Need to address 
+## Need to address
 - How to add CSS class to custom logo?
 
+[plugin-icon]:#how-to-change-the-icon-for-your-plugin
 [wepack-word]:#how-to-setup-webpack-with-wordpress
 [new-installation]:#how-to-install-a-new-wordpress
 [add-pagination]:#how-to-add-pagination-to-blog
@@ -80,6 +82,45 @@
 
 ---
 
+
+### How to change icon for your plugin
+<details>
+  <summary>
+  View Content
+  </summary>
+
+	- [wordpress dashicons](https://developer.wordpress.org/resource/dashicons/#dismiss)
+
+	When you are setting up an admin menu page, the link is where you will see a list
+	of the different types of dashicons  to use.
+
+```php
+/*
+  add_menu_page(
+    string   $page_title,
+    string   $menu_title,
+    string   $capability,
+    string   $menu_slug,
+    callable $function = '',
+    string   $icon_url = '',
+    int      $position = null
+  )
+*/
+
+add_menu_page(
+  __('Simple A Settings','simple-a'),
+  'Simple',
+  'manage_options',
+  'simple-a',
+  'simple_display_settings',
+  'dashicons-admin-tools',
+  null
+);
+```
+</details>
+
+[go back :house:][home]
+
 ### How to setup up webpack  with wordpress
 
 <details>
@@ -89,19 +130,19 @@ View Content
 
 **Note:** This is assuming that you are using webpack **3.10.0** or version 3
 
-1. install npm if you haven't already 
+1. install npm if you haven't already
 
 ```
 npm init
 ```
 
-2. install these dependencies 
+2. install these dependencies
 
 ```
 npm i css-loader sass-loader node-sass postcss-loader autoprefixer extract-text-webpack-plugin  webpack --save-dev
 ```
 
-3. create a config file 
+3. create a config file
 
 
 
@@ -110,420 +151,481 @@ npm i css-loader sass-loader node-sass postcss-loader autoprefixer extract-text-
 
 [go back :house:][home]
 
-### How to install a new wordpress 
+### How to install a new wordpress
 
-1. create a database 
 
-```sql
-CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-```
-2. update linux 
+<details>
+  <summary>
+  View Content
+  </summary>
 
-```
-sudo apt-get update
-```
+	1. create a database
 
-3. create a conf for your wordpress site
+	```sql
+	CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+	```
+	2. update linux
 
-```
-sudo nano /etc/apache2/wordpress.conf
+	```
+	sudo apt-get update
+	```
 
-	// add this into the file
+	3. create a conf for your wordpress site
 
-	<Directory /var/www/html/>
-    	AllowOverride All
-	</Directory>
-```
+	```
+	sudo nano /etc/apache2/wordpress.conf
 
-4. activate the conf file and restart apache 
+		// add this into the file
 
-```
-sudo a2ensite wordpress.conf ; sudo service apache2 reload; sudo service apache2 restart;
-```
+		<Directory /var/www/html/>
+	    	AllowOverride All
+		</Directory>
+	```
 
-5. encrypt the address with Let's Encrypt 
+	4. activate the conf file and restart apache
 
-```
-sudo certbot --apache -d example.com
-```
+	```
+	sudo a2ensite wordpress.conf ; sudo service apache2 reload; sudo service apache2 restart;
+	```
 
-6. copy wordpress files to new location 
+	5. encrypt the address with Let's Encrypt
 
-```
-sudo cp -a /tmp/wordpress/. /var/www/html
-```
+	```
+	sudo certbot --apache -d example.com
+	```
 
-7. configure wordpress 
-```
-	sudo chown -R yourName:www-data /var/www/html;
-	sudo find /var/www/html -type d -exec chmod g+s {} \;
-	sudo chmod g+w /var/www/html/wp-content;
-	sudo chmod -R g+w /var/www/html/wp-content/themes;
-	sudo chmod -R g+w /var/www/html/wp-content/plugins;
-```
+	6. copy wordpress files to new location
 
-8. now, create the keys and passwords
+	```
+	sudo cp -a /tmp/wordpress/. /var/www/html
+	```
 
-```
-// copy the printed keys
-	curl -s https://api.wordpress.org/secret-key/1.1/salt/
+	7. configure wordpress
+	```
+		sudo chown -R yourName:www-data /var/www/html;
+		sudo find /var/www/html -type d -exec chmod g+s {} \;
+		sudo chmod g+w /var/www/html/wp-content;
+		sudo chmod -R g+w /var/www/html/wp-content/themes;
+		sudo chmod -R g+w /var/www/html/wp-content/plugins;
+	```
 
-	sudo nano /var/www/html/wp-config.php
+	8. now, create the keys and passwords
 
-	// place the printed keys in the file
-	// and add in the database information  like this
+	```
+	// copy the printed keys
+		curl -s https://api.wordpress.org/secret-key/1.1/salt/
 
-	define('DB_NAME', 'wordpress');
+		sudo nano /var/www/html/wp-config.php
 
-	/** MySQL database username */
-	define('DB_USER', 'wordpressuser');
+		// place the printed keys in the file
+		// and add in the database information  like this
 
-	/** MySQL database password */
-	define('DB_PASSWORD', 'password');
+		define('DB_NAME', 'wordpress');
 
-	. . .
+		/** MySQL database username */
+		define('DB_USER', 'wordpressuser');
 
-	define('FS_METHOD', 'direct');
-```
+		/** MySQL database password */
+		define('DB_PASSWORD', 'password');
+
+		. . .
+
+		define('FS_METHOD', 'direct');
+	```
+
+</details>
 
 [go back home][home]
 
 ### How to add pagination to blog
 
-` echo paginate_links(array("total" => $the_query->max_num_pages));`
-
-**reference**
-- [WordPress Pagination Tutorial (Custom Query & Template Integration)](https://www.youtube.com/watch?v=HMscydyViZw)
-- [paginate_links](https://developer.wordpress.org/reference/functions/paginate_links/)
-
-**paginate_links()**
-```php
-    <?php
-
-    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
-    $args = array(
-   'post_type' => 'post', //must use tag id for this field
-   'posts_per_page' => 3,
-   "paged" => $paged,
-
- ); //get all posts
+<details>
+  <summary>
+  View Content
+  </summary>
 
 
- // the query
- $the_query = new WP_Query( $args ); ?>
+	` echo paginate_links(array("total" => $the_query->max_num_pages));`
 
- <?php if ( $the_query->have_posts() ) : ?>
+	**reference**
+	- [WordPress Pagination Tutorial (Custom Query & Template Integration)](https://www.youtube.com/watch?v=HMscydyViZw)
+	- [paginate_links](https://developer.wordpress.org/reference/functions/paginate_links/)
 
- 	<!-- pagination here -->
+	**paginate_links()**
+	```
+	    <?php
 
- 	<!-- the loop -->
- 	<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-        <div class="border border-bottom-0 text-center">
-            <h2><?php the_title(); ?></h2>
-            <p><?php the_content(); ?></p>
-        </div>
+	    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+	    $args = array(
+	   'post_type' => 'post', //must use tag id for this field
+	   'posts_per_page' => 3,
+	   "paged" => $paged,
 
- 	<?php endwhile; ?>
- 	<!-- end of the loop -->
-
- 	<!-- pagination here -->
-    <?php
-
-        //previous_posts_link();
-       echo paginate_links(array(
-           "total" => $the_query->max_num_pages
-       ));
-        //next_posts_link("Next post", $the_query->max_num_pages);
-
-     ?>
-
- 	<?php wp_reset_postdata(); ?>
+	 ); //get all posts
 
 
+	 // the query
+	 $the_query = new WP_Query( $args ); ?>
 
- <?php else : ?>
- 	<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
- <?php
-    endif;
- ?>
+	 <?php if ( $the_query->have_posts() ) : ?>
 
-```
+	 	<!-- pagination here -->
 
-**next_posts_link()**
-```php
-<?php
+	 	<!-- the loop -->
+	 	<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+	        <div class="border border-bottom-0 text-center">
+	            <h2><?php the_title(); ?></h2>
+	            <p><?php the_content(); ?></p>
+	        </div>
 
-//If you want to only next and previous arrow links then
-//this is how you do it
+	 	<?php endwhile; ?>
+	 	<!-- end of the loop -->
 
-        previous_posts_link();
-       
-        next_posts_link("Next post", $the_query->max_num_pages);
+	 	<!-- pagination here -->
+	    <?php
 
-     ?>
-```
+	        //previous_posts_link();
+	       echo paginate_links(array(
+	           "total" => $the_query->max_num_pages
+	       ));
+	        //next_posts_link("Next post", $the_query->max_num_pages);
+
+	     ?>
+
+	 	<?php wp_reset_postdata(); ?>
+
+
+
+	 <?php else : ?>
+	 	<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
+	 <?php
+	    endif;
+	 ?>
+
+	```
+
+	**next_posts_link()**
+	```php
+
+
+	//If you want to only next and previous arrow links then
+	//this is how you do it
+
+	        previous_posts_link();
+
+	        next_posts_link("Next post", $the_query->max_num_pages);
+
+
+	```
+
+</details>
+
 
 [go back home][home]
 
+
 ### How to get the current theme folder
 
-`get_theme_file_uri( string $file = '' )`
+<details>
+  <summary>
+  View Content
+  </summary>
 
-This method essential if you are trying to get root folder or your 
-child theme, in order to retrieve a js or css file
+	`get_theme_file_uri( string $file = '' )`
 
-**reference**
-- [wordpress](https://developer.wordpress.org/reference/functions/get_theme_file_uri/)
+	This method essential if you are trying to get root folder or your
+	child theme, in order to retrieve a js or css file
 
-```php
-//in functions.php
+	**reference**
+	- [wordpress](https://developer.wordpress.org/reference/functions/get_theme_file_uri/)
 
-function my_theme_enqueue_scripts() {
-    wp_enqueue_script( 'js-stick', get_theme_file_uri().'/js/scrollfix.js');
-    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/index.js');
+	```php
+	//in functions.php
+
+	function my_theme_enqueue_scripts() {
+	    wp_enqueue_script( 'js-stick', get_theme_file_uri().'/js/scrollfix.js');
+	    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/index.js');
 
 
-}
+	}
 
 
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
+	add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
 
-```
+	```
 
+</details>
 
 [go back home][home]
 
 ### Standard Post loops
 
-Here are the typical ways to query posts/pages from the **WP_Query** class
 
-**reference**
-- [codex](https://codex.wordpress.org/Class_Reference/WP_Query)
+<details>
+  <summary>
+  View Content
+  </summary>
 
-#### Standard Loop
+	Here are the typical ways to query posts/pages from the **WP_Query** class
 
-```php
+	**reference**
+	- [codex](https://codex.wordpress.org/Class_Reference/WP_Query)
 
-<?php
+	#### Standard Loop
 
-// The Query
-$the_query = new WP_Query( $args );
+	```
 
-// The Loop
-if ( $the_query->have_posts() ) {
-	echo '<ul>';
-	while ( $the_query->have_posts() ) {
-		$the_query->the_post();
-		echo '<li>' . get_the_title() . '</li>';
-	}
-	echo '</ul>';
-	/* Restore original Post Data */
-	wp_reset_postdata();
-} else {
-	// no posts found
-}
-```
+	<?php
 
-#### Standard Loop 2
+	// The Query
+	$the_query = new WP_Query( $args );
 
-```php
-<?php 
-// the query
-$the_query = new WP_Query( $args ); ?>
-
-<?php if ( $the_query->have_posts() ) : ?>
-
-	<!-- pagination here -->
-
-	<!-- the loop -->
-	<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-		<h2><?php the_title(); ?></h2>
-	<?php endwhile; ?>
-	<!-- end of the loop -->
-
-	<!-- pagination here -->
-
-	<?php wp_reset_postdata(); ?>
-
-<?php else : ?>
-	<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
-<?php endif; ?>
-
-```
-
-#### Standard Loop 3 
-
-```php
-
-    <?php
-    global $wp_query;
-    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
-    $args = array(
-   'post_type' => 'post', //must use tag id for this field
-   'posts_per_page' => 3,
-   "paged" => $paged,
-
- ); //get all posts
-
-    $posts = get_posts($args);
-
-     ?>
-
-     <?php
-     foreach ($posts as $post) :
-         //$post->the_post();
-      ?>
-
-      <div class=" border border-bottom-0 row justify-content-center">
-          <div class="col text-center">
-
-              <h4><?php echo $post->post_title; ?></h4>
-              <p><?php echo $post->post_content;  ?></p>
-          </div>
-      </div>
-        
- <?php
- endforeach;
- 
-   ?>
-```
-
-#### Multiple Loops
-
-```php
-<?php
-
-// The Query
-$query1 = new WP_Query( $args );
-
-if ( $query1->have_posts() ) {
 	// The Loop
-	while ( $query1->have_posts() ) {
-		$query1->the_post();
-		echo '<li>' . get_the_title() . '</li>';
+	if ( $the_query->have_posts() ) {
+		echo '<ul>';
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			echo '<li>' . get_the_title() . '</li>';
+		}
+		echo '</ul>';
+		/* Restore original Post Data */
+		wp_reset_postdata();
+	} else {
+		// no posts found
 	}
-	
-	/* Restore original Post Data 
-	 * NB: Because we are using new WP_Query we aren't stomping on the 
-	 * original $wp_query and it does not need to be reset with 
-	 * wp_reset_query(). We just need to set the post data back up with
-	 * wp_reset_postdata().
-	 */
-	wp_reset_postdata();
-}
+	```
 
-/* The 2nd Query (without global var) */
-$query2 = new WP_Query( $args2 );
+	#### Standard Loop 2
 
-if ( $query2->have_posts() ) {
-	// The 2nd Loop
-	while ( $query2->have_posts() ) {
-		$query2->the_post();
-		echo '<li>' . get_the_title( $query2->post->ID ) . '</li>';
+	```
+	<?php
+	// the query
+	$the_query = new WP_Query( $args ); ?>
+
+	<?php if ( $the_query->have_posts() ) : ?>
+
+		<!-- pagination here -->
+
+		<!-- the loop -->
+		<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+			<h2><?php the_title(); ?></h2>
+		<?php endwhile; ?>
+		<!-- end of the loop -->
+
+		<!-- pagination here -->
+
+		<?php wp_reset_postdata(); ?>
+
+	<?php else : ?>
+		<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
+	<?php endif; ?>
+
+	```
+
+	#### Standard Loop 3
+
+	```
+
+	    <?php
+	    global $wp_query;
+	    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+	    $args = array(
+	   'post_type' => 'post', //must use tag id for this field
+	   'posts_per_page' => 3,
+	   "paged" => $paged,
+
+	 ); //get all posts
+
+	    $posts = get_posts($args);
+
+	     ?>
+
+	     <?php
+	     foreach ($posts as $post) :
+	         //$post->the_post();
+	      ?>
+
+	      <div class=" border border-bottom-0 row justify-content-center">
+	          <div class="col text-center">
+
+	              <h4><?php echo $post->post_title; ?></h4>
+	              <p><?php echo $post->post_content;  ?></p>
+	          </div>
+	      </div>
+
+	 <?php
+	 endforeach;
+
+	   ?>
+	```
+
+	#### Multiple Loops
+
+	```
+
+
+	// The Query
+	$query1 = new WP_Query( $args );
+
+	if ( $query1->have_posts() ) {
+		// The Loop
+		while ( $query1->have_posts() ) {
+			$query1->the_post();
+			echo '<li>' . get_the_title() . '</li>';
+		}
+
+		/* Restore original Post Data
+		 * NB: Because we are using new WP_Query we aren't stomping on the
+		 * original $wp_query and it does not need to be reset with
+		 * wp_reset_query(). We just need to set the post data back up with
+		 * wp_reset_postdata().
+		 */
+		wp_reset_postdata();
 	}
 
-	// Restore original Post Data
-	wp_reset_postdata();
-}
+	/* The 2nd Query (without global var) */
+	$query2 = new WP_Query( $args2 );
 
-?>
+	if ( $query2->have_posts() ) {
+		// The 2nd Loop
+		while ( $query2->have_posts() ) {
+			$query2->the_post();
+			echo '<li>' . get_the_title( $query2->post->ID ) . '</li>';
+		}
 
-```
+		// Restore original Post Data
+		wp_reset_postdata();
+	}
+
+
+
+	```
+
+</details>
+
+
 
 
 [go back home][home]
 
 ### How to make JQuery work
 
-**reference**
-- [TypeError: $ is not a function Wordpress](https://stackoverflow.com/questions/12258282/typeerror-is-not-a-function-wordpress)
+<details>
+  <summary>
+  View Content
+  </summary>
+	**reference**
+	- [TypeError: $ is not a function Wordpress](https://stackoverflow.com/questions/12258282/typeerror-is-not-a-function-wordpress)
 
-```js
-jQuery( document ).ready(function( $ ) {
-// Code that uses jQuery's $ can follow here.
-$('.site-title').css('background-color','red');
-});
-```
+	```js
+	jQuery( document ).ready(function( $ ) {
+	// Code that uses jQuery's $ can follow here.
+	$('.site-title').css('background-color','red');
+	});
+	```
 
-**Note:** make sure in `functions.php` you add jquery in the wp_enqueue_script parameter
+	**Note:** make sure in `functions.php` you add jquery in the wp_enqueue_script parameter
 
-```php
-<?php
+	```
+	<?php
 
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
+	add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
 
-function my_theme_enqueue_scripts() {
-    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/main.js', array("jquery") );
+	function my_theme_enqueue_scripts() {
+	    wp_enqueue_script( 'js-style', get_theme_file_uri().'/js/main.js', array("jquery") );
 
-}
-```
+	}
+	```
+</details>
 
 [go back home][home]
 
 ### How to set placeholder text in contact form 7
 
-**reference**
-- [contact form 7](https://contactform7.com/setting-placeholder-text/)
+<details>
+  <summary>
+  View Content
+  </summary>
 
-```php
-[text your-name placeholder "Enter Name"]
-```
+	**reference**
+	- [contact form 7](https://contactform7.com/setting-placeholder-text/)
 
-[go back home][home]
+	```php
+	[text your-name placeholder "Enter Name"]
+	```
+</details>
+
+[go back :house:][home]
+
 
 ### How to add scripts from different urls
 
-**reference**
-- [tutplus](https://code.tutsplus.com/articles/how-to-include-javascript-and-css-in-your-wordpress-themes-and-plugins--wp-24321)
+<details>
+  <summary>
+  View Content
+  </summary>
 
-```php
-function wptuts_scripts_load_cdn()
-{
-    // Deregister the included library
-    wp_deregister_script( 'jquery' );
-     
-    // Register the library again from Google's CDN
-    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', array(), null, false );
-     
-    // Register the script like this for a plugin:
-    wp_register_script( 'custom-script', plugins_url( '/js/custom-script.js', __FILE__ ), array( 'jquery' ) );
-    // or
-    // Register the script like this for a theme:
-    wp_register_script( 'custom-script', get_template_directory_uri() . '/js/custom-script.js', array( 'jquery' ) );
- 
-    // For either a plugin or a theme, you can then enqueue the script:
-    wp_enqueue_script( 'custom-script' );
-}
-add_action( 'wp_enqueue_scripts', 'wptuts_scripts_load_cdn' );
+	**reference**
+	- [tutplus](https://code.tutsplus.com/articles/how-to-include-javascript-and-css-in-your-wordpress-themes-and-plugins--wp-24321)
 
-```
+	```php
+	function wptuts_scripts_load_cdn()
+	{
+	    // Deregister the included library
+	    wp_deregister_script( 'jquery' );
+
+	    // Register the library again from Google's CDN
+	    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', array(), null, false );
+
+	    // Register the script like this for a plugin:
+	    wp_register_script( 'custom-script', plugins_url( '/js/custom-script.js', __FILE__ ), array( 'jquery' ) );
+	    // or
+	    // Register the script like this for a theme:
+	    wp_register_script( 'custom-script', get_template_directory_uri() . '/js/custom-script.js', array( 'jquery' ) );
+
+	    // For either a plugin or a theme, you can then enqueue the script:
+	    wp_enqueue_script( 'custom-script' );
+	}
+	add_action( 'wp_enqueue_scripts', 'wptuts_scripts_load_cdn' );
+
+	```
+
+</details>
 
 [go back home][home]
 
-### Post Reference 
 
-**reference**
-- [codex](https://codex.wordpress.org/Class_Reference/WP_Post)
+### Post Reference
 
-Member Variable|Variable Type|Notes
--|-|-
-ID|int|The ID of the post 
-post_author|string|The post author's user ID (numeric string)  
-post_name|string|The post's slug   
-post_type|string|[post types](https://codex.wordpress.org/Post_Types)  
-post_title|string|The title of the post  
-post_date|string|Format: 0000-00-00 00:00:00  
-post_date_gmt|string|Format: 0000-00-00 00:00:00  
-post_content|string| The full content of the post   
-post_excerpt|string| User-defined post excerpt   
-post_status|string|[get_post_status](https://codex.wordpress.org/Function_Reference/get_post_status)  
+<details>
+  <summary>
+  View Content
+  </summary>
 
+	**reference**
+	- [codex](https://codex.wordpress.org/Class_Reference/WP_Post)
+
+	Member Variable|Variable Type|Notes
+	-|-|-
+	ID|int|The ID of the post
+	post_author|string|The post author's user ID (numeric string)  
+	post_name|string|The post's slug   
+	post_type|string|[post types](https://codex.wordpress.org/Post_Types)  
+	post_title|string|The title of the post  
+	post_date|string|Format: 0000-00-00 00:00:00  
+	post_date_gmt|string|Format: 0000-00-00 00:00:00  
+	post_content|string| The full content of the post   
+	post_excerpt|string| User-defined post excerpt   
+	post_status|string|[get_post_status](https://codex.wordpress.org/Function_Reference/get_post_status)  
+
+
+</details>
 
 [go back home][home]
 
 ### Wordpress function reference
 
-There are a lot of functions in this bitch, so I am only going to 
+There are a lot of functions in this bitch, so I am only going to
 focus on **Post, Custom Post Type, Page, Attachment and Bookmarks Functions**
 
 **reference**
@@ -619,20 +721,20 @@ add_action( 'save_post', 'wpdocs_my_save_post', 10, 3 );
 * CODEX: http://codex.wordpress.org/Class_Reference/WP_Query
 * Source: http://core.trac.wordpress.org/browser/tags/3.3.1/wp-includes/query.php
 */
- 
-$args = array( 
-  
+
+$args = array(
+
 //////Author Parameters - Show posts associated with certain author.
     'author' => 1,2,3,                        //(int) - use author id [use minus (-) to exclude authors by ID ex. 'author' => -1,-2,-3,]
     'author_name' => 'luetkemj',              //(string) - use 'user_nicename' (NOT name)
-  
+
 //////Category Parameters - Show posts associated with certain categories.
     'cat' => 5,//(int) - use category id.
     'category_name' => 'staff', 'news',       //(string) - use category slug (NOT name).
     'category__and' => array( 2, 6 ),         //(array) - use category id.
     'category__in' => array( 2, 6 ),          //(array) - use category id.
     'category__not_in' => array( 2, 6 ),      //(array) - use category id.
-     
+
 //////Tag Parameters - Show posts associated with certain tags.
     'tag' => 'cooking',                       //(string) - use tag slug.
     'tag_id' => 5,                            //(int) - use tag id.
@@ -641,7 +743,7 @@ $args = array(
     'tag__not_in' => array( 2, 6),            //(array) - use tag ids.
     'tag_slug__and' => array( 'red', 'blue'), //(array) - use tag slugs.
     'tag_slug__in' => array( 'red', 'blue'),  //(array) - use tag slugs.
-  
+
 //////Taxonomy Parameters - Show posts associated with certain taxonomy.
   //Important Note: tax_query takes an array of tax query arguments arrays (it takes an array of arrays)
   //This construct allows you to query multiple taxonomies by using the relation parameter in the first (outer) array to describe the boolean relationship between the taxonomy queries.
@@ -690,10 +792,10 @@ $args = array(
             'inherit',                      // - a revision. see get_children.
             'trash'                         // - post is in trashbin (available with Version 2.9).
             ),
-    //NOTE: The 'any' keyword available to both post_type and post_status queries cannot be used within an array. 
+    //NOTE: The 'any' keyword available to both post_type and post_status queries cannot be used within an array.
     'post_type' => 'any',                    // - retrieves any type except revisions and types with 'exclude_from_search' set to true.
     'post_status' => 'any',                  // - retrieves any status except those from post types with 'exclude_from_search' set to true.
-    
+
 //////Pagination Parameters
     'posts_per_page' => 10,                 //(int) - number of post to show per page (available with Version 2.1). Use 'posts_per_page'=-1 to show all posts. Note if the query is in a feed, wordpress overwrites this parameter with the stored 'posts_per_rss' option. Treimpose the limit, try using the 'post_limits' filter, or filter 'pre_option_posts_per_rss' and return -1
     'posts_per_archive_page' => 10,         //(int) - number of posts to show per page - on archive pages only. Over-rides showposts anposts_per_page on pages where is_archive() or is_search() would be true
@@ -722,13 +824,13 @@ $args = array(
                                               //'meta_value' - Note that a 'meta_key=keyname' must also be present in the query. Note alsthat the sorting will be alphabetical which is fine for strings (i.e. words), but can bunexpected for numbers (e.g. 1, 3, 34, 4, 56, 6, etc, rather than 1, 3, 4, 6, 34, 56 as yomight naturally expect).
                                               //'meta_value_num' - Order by numeric meta value (available with Version 2.8). Also notthat a 'meta_key=keyname' must also be present in the query. This value allows for numericasorting as noted above in 'meta_value'.
                                               //'post__in' - Preserve post ID order given in the post__in array (available with Version 3.5).
-																							 
-																							 
+
+
 //////Sticky Post Parameters - Show Sticky Posts or ignore them.
     'ignore_sticky_posts' => false,         //(bool) - ignore sticky posts or not. Default value is false, don't ignore. Ignore/excludsticky posts being included at the beginning of posts returned, but the sticky post will still be returned in the natural order othat list of posts returned.
     //NOTE: For more info on sticky post queries see: http://codex.wordpress.org/Class_Reference/WP_Query#Sticky_Post_Parameters
-																							 
-																							 
+
+
 //////Time Parameters - Show posts associated with a certain time period.
     'year' => 2012,                         //(int) - 4 digit year (e.g. 2011).
     'monthnum' => 3,                        //(int) - Month number (from 1 to 12).
@@ -754,7 +856,7 @@ $args = array(
          'value' => array( 1,200 ),
          'compare' => 'NOT LIKE'
        )
-         
+
 //////Permission Parameters - Display published posts, as well as private posts, if the user has the appropriate capability:
     'perm' => 'readable'                    //(string) Possible values are 'readable', 'editable' (possible more ie all capabilitiealthough I have not tested)
 //////Parameters relating to caching
@@ -764,7 +866,7 @@ $args = array(
     'update_post_meta_cache' => true,       //(bool) Default is true
     //NOTE Caching is a good thing. Setting these to false is generally not advised. For more info on usage see: http://codex.wordpresorg/Class_Reference/WP_Query#Permission_Parameters
 //////Search Parameter
-    's' => $s,                              //(string) - Passes along the query string variable from a search. For example usage see: http://www.wprecipes.com/how-to-display-the-number-of-results-in-wordpress-search 
+    's' => $s,                              //(string) - Passes along the query string variable from a search. For example usage see: http://www.wprecipes.com/how-to-display-the-number-of-results-in-wordpress-search
     'exact' => true                         //(bool) - flag to make it only match whole titles/posts - Default value is false. For more information see: https://gist.github.com/2023628#gistcomment-285118
     'sentence' => true                      //(bool) - flag to make it do a phrase search - Default value is false. For more information see: https://gist.github.com/2023628#gistcomment-285118
 //////Post Field Parameters
@@ -812,7 +914,7 @@ global $wp_query;
 
 $posts = get_posts($args);
         foreach ($posts as $post) :
-  //do stuff 
+  //do stuff
      endforeach;
 
 ```
@@ -826,7 +928,7 @@ global $wp_query;
 
 $posts = get_posts($args);
         foreach ($posts as $post) :
-  //do stuff 
+  //do stuff
      endforeach;
 
 ```
@@ -857,7 +959,7 @@ $posts = get_posts($args);
 	'author'	   => '',
 	'author_name'	   => '',
 	'post_status'      => 'publish',
-	'suppress_filters' => true 
+	'suppress_filters' => true
 );
 $posts_array = get_posts( $args ); ?>
 
@@ -885,7 +987,7 @@ define( 'WP_DEBUG', true );
 
 **reference**
 - [source](http://www.wpbeginner.com/wp-themes/how-to-remove-the-powered-by-wordpress-footer-links/)
- 
+
 
 1. Go to **footer.php** and comment out the `get_template_part()` that  has footer
 
@@ -898,7 +1000,7 @@ define( 'WP_DEBUG', true );
 
 ### How to customize login form
 
-If you want to change the style of the wordpress login form here 
+If you want to change the style of the wordpress login form here
 are a couple of ways of doing it.
 
 **reference**
@@ -948,7 +1050,7 @@ add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
 [go back home][home]
 
 
-### how to create a page template 
+### how to create a page template
 
 **reference**
 - [wordpress](https://developer.wordpress.org/themes/template-files-section/page-template-files/)
@@ -976,7 +1078,7 @@ add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
 
 update wp_options set option_value = "yourNewDomain.com" where option_name = "siteurl";
 
-update wp_options set option_value = "yourNewDomain.com" where option_name = "home"; 
+update wp_options set option_value = "yourNewDomain.com" where option_name = "home";
 
 ```
 3. Once you change the names to your domain, everything will be all good.

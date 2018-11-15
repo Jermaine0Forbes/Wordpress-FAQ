@@ -11,7 +11,7 @@
 - add_menu_page
 - [add_options_page][add-options-page]
 - [add_settings_field][add-settings-field]
-- add_settings_section
+- [add_settings_section][add-settings-section]
 - add_submenu_page
 - current_user_can
 - do_settings_sections
@@ -27,12 +27,65 @@
 - wp_update_user
 
 ## How to
+- [make a basic plugin][basic-plugin]
 
-
+[basic-plugin]:#make-a-basic-plugin
+[add-settings-section]:#add_settings_section
 [home]:#plugins
 [add-settings-field]:#add_settings_field
 [add-options-page]:#add_options_page
 [register-setting]:#register_setting
+
+
+### make a basic plugin
+<details>
+  <summary>
+  View Content
+  </summary>
+
+  **reference**
+  - [WordPress Settings API Tutorial with Examples](http://qnimate.com/wordpress-settings-api-a-comprehensive-developers-guide/)
+
+```
+
+```
+</details>
+
+[go back :house:][home]
+
+
+### add_settings_section
+<details>
+  <summary>
+  View Content
+  </summary>
+
+  **reference**
+  - [wordpress](https://developer.wordpress.org/reference/functions/add_settings_section/)
+
+```php
+add_settings_section(
+    'eg_setting_section',
+    __( 'Example settings section in reading', 'textdomain' ),
+    'wpdocs_setting_section_callback_function',
+    'reading'
+);
+
+/**
+ * Settings section display callback.
+ *
+ * @param array $args Display arguments.
+ */
+function wpdocs_setting_section_callback_function( $args ) {
+    // echo section intro text here
+    echo '<p>id: ' . esc_html( $args['id'] ) . '</p>';                         // id: eg_setting_section
+    echo '<p>title: ' . apply_filters( 'the_title', $args['title'] ) . '</p>'; // title: Example settings section in reading
+    echo '<p>callback: ' . esc_html( $args['callback'] ) . '</p>';             // callback: eg_setting_section_callback_function
+}
+```
+</details>
+
+[go back :house:][home]
 
 ### add_settings_field
 <details>

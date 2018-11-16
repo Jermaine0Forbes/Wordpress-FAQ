@@ -1242,12 +1242,15 @@ define( 'FS_METHOD', 'direct' );
   <summary>
   View Content
   </summary>
+
 **To add css**
+
 ```
 wp_enqueue_style( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, string $media = 'all' )
 ```
 
 **To add js**
+v
 ```
 wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )
 ```
@@ -1283,6 +1286,22 @@ function my_theme_enqueue_scripts() {
 
 
 ```
+
+**This is how you add files from a different website**
+```php
+function add_style(){
+
+    wp_enqueue_style("boots-style","https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css",array(),false,'all');
+    wp_enqueue_script("jquery-slim","https://code.jquery.com/jquery-3.3.1.slim.min.js");
+    wp_enqueue_script("popper","https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js");
+    wp_enqueue_script("boots-js","https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js");
+}
+
+add_action("wp_enqueue_scripts","add_style");
+
+```
+
+
 </details>
 
 

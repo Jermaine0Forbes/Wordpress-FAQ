@@ -10,7 +10,7 @@
 ## Functions
 - add_action
 - [add_filter][add-filter]
-- add_menu_page
+- [add_menu_page][add-menu-page]
 - [add_options_page][add-options-page]
 - [add_settings_field][add-settings-field]
 - [add_settings_section][add-settings-section]
@@ -42,7 +42,7 @@
 ## How to
 - [make a basic plugin][basic-plugin]
 
-
+[add-menu-page]:#add_menu_page
 [update-option]:#update_option
 [add-filter]:#add_filter
 [basic-plugin]:#make-a-basic-plugin
@@ -51,6 +51,75 @@
 [add-settings-field]:#add_settings_field
 [add-options-page]:#add_options_page
 [register-setting]:#register_setting
+
+
+### add_menu_page
+<details>
+  <summary>
+  View Content
+  </summary>
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/add_menu_page/)
+
+`add_menu_page( string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '', string $icon_url = '', int $position = null )`
+
+
+```
+$page_title
+(string) (Required) The text to be displayed in the title tags of the page when the menu is selected.
+
+$menu_title
+(string) (Required) The text to be used for the menu.
+
+$capability
+(string) (Required) The capability required for this menu to be displayed to the user.
+
+$menu_slug
+(string) (Required) The slug name to refer to this menu by. Should be unique for this menu page and only include lowercase alphanumeric, dashes, and underscores characters to be compatible with sanitize_key().
+
+$function
+(callable) (Optional) The function to be called to output the content for this page.
+
+Default value: ''
+
+$icon_url
+(string) (Optional) The URL to the icon to be used for this menu.
+* Pass a base64-encoded SVG using a data URI, which will be colored to match the color scheme. This should begin with 'data:image/svg+xml;base64,'.
+* Pass the name of a Dashicons helper class to use a font icon, e.g. 'dashicons-chart-pie'.
+* Pass 'none' to leave div.wp-menu-image empty so an icon can be added via CSS.
+
+Default value: ''
+
+$position
+(int) (Optional) The position in the menu order this one should appear.
+
+Default value: null
+
+
+
+```
+
+```php
+/**
+ * Register a custom menu page.
+ */
+function wpdocs_register_my_custom_menu_page() {
+    add_menu_page(
+        __( 'Custom Menu Title', 'textdomain' ),
+        'custom menu',
+        'manage_options',
+        'myplugin/myplugin-admin.php',
+        '',
+        plugins_url( 'myplugin/images/icon.png' ),
+        6
+    );
+}
+add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
+```
+</details>
+
+[go back :house:][home]
 
 
 ### update_option

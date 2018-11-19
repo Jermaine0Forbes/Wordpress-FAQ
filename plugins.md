@@ -14,7 +14,7 @@
 - [add_options_page][add-options-page]
 - [add_settings_field][add-settings-field]
 - [add_settings_section][add-settings-section]
-- add_submenu_page
+- [add_submenu_page][add-submenu-page]
 - array_key_exists
 - checked
 - current_user_can
@@ -42,6 +42,7 @@
 ## How to
 - [make a basic plugin][basic-plugin]
 
+[add-submenu-page]:#add_submenu_page
 [add-menu-page]:#add_menu_page
 [update-option]:#update_option
 [add-filter]:#add_filter
@@ -51,6 +52,75 @@
 [add-settings-field]:#add_settings_field
 [add-options-page]:#add_options_page
 [register-setting]:#register_setting
+
+
+### add_submenu_page
+<details>
+  <summary>
+  View Content
+  </summary>
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/add_submenu_page/)
+
+`add_submenu_page( string $parent_slug, string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '' )`
+
+**Options**
+```
+$parent_slug
+(string) (Required) The slug name for the parent menu (or the file name of a standard WordPress admin page).
+
+$page_title
+(string) (Required) The text to be displayed in the title tags of the page when the menu is selected.
+
+$menu_title
+(string) (Required) The text to be used for the menu.
+
+$capability
+(string) (Required) The capability required for this menu to be displayed to the user.
+
+$menu_slug
+(string) (Required) The slug name to refer to this menu by. Should be unique for this menu and only include lowercase alphanumeric, dashes, and underscores characters to be compatible with sanitize_key().
+
+$function
+(callable) (Optional) The function to be called to output the content for this page.
+
+Default value: ''
+
+```
+
+
+**Example**
+```php
+/**
+ * Adds a submenu page under a custom post type parent.
+ */
+function books_register_ref_page() {
+    add_submenu_page(
+        'edit.php?post_type=book',
+        __( 'Books Shortcode Reference', 'textdomain' ),
+        __( 'Shortcode Reference', 'textdomain' ),
+        'manage_options',
+        'books-shortcode-ref',
+        'books_ref_page_callback'
+    );
+}
+
+/**
+ * Display callback for the submenu page.
+ */
+function books_ref_page_callback() {
+    ?>
+    <div class="wrap">
+        <h1><?php _e( 'Books Shortcode Reference', 'textdomain' ); ?></h1>
+        <p><?php _e( 'Helpful stuff here', 'textdomain' ); ?></p>
+    </div>
+    <?php
+}
+```
+</details>
+
+[go back :house:][home]
 
 
 ### add_menu_page

@@ -29,10 +29,11 @@
 - sanitize_text_field
 - selected
 - settings_fields
-- stripslashes_deep
+- [stripslashes_deep][stripslashes-deep]
 - submit_button
 - [update_option][update-option]
-- wp_kses
+- [wp_create_nonce][wp-create-nonce]
+- [wp_kses][wp-kses]
 - wp_kses_allowed_html
 - wp_kses_post
 - wp_update_user
@@ -42,6 +43,8 @@
 ## How to
 - [make a basic plugin][basic-plugin]
 
+[wp-create-nonce]:#wp_create_nonce
+[stripslashes-deep]:#stripslashes_deep
 [add-submenu-page]:#add_submenu_page
 [add-menu-page]:#add_menu_page
 [update-option]:#update_option
@@ -53,6 +56,81 @@
 [add-options-page]:#add_options_page
 [register-setting]:#register_setting
 
+
+### wp_create_nonce
+<details>
+  <summary>
+  View Content
+  </summary>
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/wp_create_nonce/)
+- [tipsandtricks](https://www.tipsandtricks-hq.com/introduction-to-wordpress-nonces-5357)
+
+**My definition:** I really don't know what the fuck this thing is about. Apparently
+it is used identifying the user id?
+
+```php
+$my_nonce = wp_create_nonce('delete_my_rec');
+?>
+<a href='admin.php?page=mypluginpage&action=delete&recid=1&_wpnonce=<?php echo $my_nonce ?>'>Delete Me</a>
+
+```
+</details>
+
+[go back :house:][home]
+
+
+
+### stripslashes_deep
+<details>
+  <summary>
+  View Content
+  </summary>
+
+**reference**
+- [wordpress](https://codex.wordpress.org/Function_Reference/stripslashes_deep)
+
+**Wordpress Definition:** Navigates through an array and removes slashes from the values.
+
+```php
+$my_post = stripslashes_deep($_POST);
+$my_value = $my_post['value'];
+```
+</details>
+
+[go back :house:][home]
+
+
+
+
+### wp_kses
+<details>
+  <summary>
+  View Content
+  </summary>
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/wp_kses/)
+
+  `wp_kses( string $string, array $allowed_html, array $allowed_protocols = array() )`
+
+**Options**
+```
+$string
+(string) (Required) Content to filter through kses
+
+$allowed_html
+(array) (Required) List of allowed HTML elements
+
+$allowed_protocols
+(array) (Optional) Allowed protocol in links.
+
+Default value: array()
+```
+</details>
+
+[go back :house:][home]
 
 ### add_submenu_page
 <details>

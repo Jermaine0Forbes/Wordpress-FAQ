@@ -364,8 +364,27 @@ function prefix_custom_front_page_sections( $num_sections )
   View Content
   </summary>
 
-  **reference**
-  - [wordpress](https://developer.wordpress.org/reference/functions/add_settings_section/)
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/add_settings_section/)
+
+**Parameters**
+`add_settings_section( string $id, string $title, callable $callback, string $page )`
+
+**Options**
+```
+Parameters #Parameters
+$id
+(string) (Required) Slug-name to identify the section. Used in the 'id' attribute of tags.
+
+$title
+(string) (Required) Formatted title of the section. Shown as the heading for the section.
+
+$callback
+(callable) (Required) Function that echos out any content at the top of the section (between heading and fields).
+
+$page
+(string) (Required) The slug-name of the settings page on which to show the section. Built-in pages include 'general', 'reading', 'writing', 'discussion', 'media', etc. Create your own using add_options_page();
+```
 
 ```php
 add_settings_section(
@@ -397,8 +416,40 @@ function wpdocs_setting_section_callback_function( $args ) {
   View Content
   </summary>
 
-  **reference**
-  - [wordpress](https://developer.wordpress.org/reference/functions/add_settings_field/)
+**reference**  
+- [wordpress](https://developer.wordpress.org/reference/functions/add_settings_field/)
+
+**Parameters**
+`add_settings_field( string $id, string $title, callable $callback, string $page, string $section = 'default', array $args = array() )`
+
+**Options**
+```
+$id
+(string) (Required) Slug-name to identify the field. Used in the 'id' attribute of tags.
+
+$title
+(string) (Required) Formatted title of the field. Shown as the label for the field during output.
+
+$callback
+(callable) (Required) Function that fills the field with the desired form inputs. The function should echo its output.
+
+$page
+(string) (Required) The slug-name of the settings page on which to show the section (general, reading, writing, ...).
+
+$section
+(string) (Optional) The slug-name of the section of the settings page in which to show the box.
+
+Default value: 'default'
+
+$args
+(array) (Optional) Extra arguments used when outputting the field.
+
+'label_for'
+(string) When supplied, the setting title will be wrapped in a <label> element, its for attribute populated with this value.
+'class'
+(string) CSS Class to be added to the <tr> element when the field is output.
+Default value: array()
+```
 
 ```php
 add_settings_field( 'myprefix_setting-id',
@@ -423,8 +474,12 @@ add_settings_field( 'myprefix_setting-id',
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/register_setting/)
 
+
+**Parameters**
 `register_setting( string $option_group, string $option_name, array $args = array() )`
 
+
+**Options**
 ```
 $option_group
 (string) (Required) A settings group name. Should correspond to a whitelisted option key name. Default whitelisted option key names include "general," "discussion," and "reading," among others.

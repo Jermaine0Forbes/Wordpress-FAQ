@@ -419,8 +419,34 @@ add_settings_field( 'myprefix_setting-id',
   <summary>
   View Content
   </summary>
+
 **reference**
 - [wordpress](https://developer.wordpress.org/reference/functions/register_setting/)
+
+`register_setting( string $option_group, string $option_name, array $args = array() )`
+
+```
+$option_group
+(string) (Required) A settings group name. Should correspond to a whitelisted option key name. Default whitelisted option key names include "general," "discussion," and "reading," among others.
+
+$option_name
+(string) (Required) The name of an option to sanitize and save.
+
+$args
+(array) (Optional) Data used to describe the setting when registered.
+
+'type'
+(string) The type of data associated with this setting. Valid values are 'string', 'boolean', 'integer', and 'number'.
+'description'
+(string) A description of the data attached to this setting.
+'sanitize_callback'
+(callable) A callback function that sanitizes the option's value.
+'show_in_rest'
+(bool) Whether data associated with this setting should be included in the REST API.
+'default'
+(mixed) Default value when calling get_option().
+Default value: array()
+```
 
 ```php
 /**

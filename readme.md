@@ -83,16 +83,16 @@
 ---
 
 
-### How to change icon for your plugin
+### How to change the icon for your plugin
 <details>
   <summary>
   View Content
   </summary>
 
-	- [wordpress dashicons](https://developer.wordpress.org/resource/dashicons/#dismiss)
+- [wordpress dashicons](https://developer.wordpress.org/resource/dashicons/#dismiss)
 
-	When you are setting up an admin menu page, the link is where you will see a list
-	of the different types of dashicons  to use.
+When you are setting up an admin menu page, the link is where you will see a list
+of the different types of dashicons  to use.
 
 ```php
 /*

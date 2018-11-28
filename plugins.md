@@ -25,6 +25,7 @@
 - get_admin_page_title
 - get_option
 - plugin_dir_path
+- [plugins_url][plugins-url]
 - [register_setting][register-setting] 
 - sanitize_text_field
 - selected
@@ -42,7 +43,10 @@
 
 ## How to
 - [make a basic plugin][basic-plugin]
+- [basic plugin creation][basic-plugin-create]
 
+[plugins-url]:#plugins_url
+[basic-plugin-create]:#basic-plugin-creation
 [do-settings-section]:#do_settings_sections
 [wp-create-nonce]:#wp_create_nonce
 [stripslashes-deep]:#stripslashes_deep
@@ -56,6 +60,42 @@
 [add-settings-field]:#add_settings_field
 [add-options-page]:#add_options_page
 [register-setting]:#register_setting
+
+
+
+### plugins_url
+<details>
+  <summary>
+  View Content
+  </summary>
+
+**reference**
+- [wordpress](https://codex.wordpress.org/Function_Reference/plugins_url)
+
+**Parameters**
+
+` <?php plugins_url( $path, $plugin ); ?> `
+
+```php
+echo '<img src="' . plugins_url( 'images/wordpress.png', __FILE__ ) . '" > ';
+```
+</details>
+
+[go back :house:][home]
+
+
+### basic plugin creation
+<details>
+  <summary>
+  View Content
+  </summary>
+
+```
+
+```
+</details>
+
+[go back :house:][home]
 
 
 ### do_settings_sections
@@ -72,10 +112,6 @@
 `do_settings_sections( string $page )`
 
 
-
-```
-
-```
 </details>
 
 [go back :house:][home]

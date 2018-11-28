@@ -18,7 +18,7 @@
 - array_key_exists
 - checked
 - current_user_can
-- do_settings_sections
+- [do_settings_sections][do-settings-sections]
 - esc_html
 - esc_attr
 - esc_url
@@ -28,7 +28,7 @@
 - [register_setting][register-setting] 
 - sanitize_text_field
 - selected
-- settings_fields
+- [settings_fields][settings-field]
 - [stripslashes_deep][stripslashes-deep]
 - submit_button
 - [update_option][update-option]
@@ -43,6 +43,7 @@
 ## How to
 - [make a basic plugin][basic-plugin]
 
+[do-settings-section]:#do_settings_sections
 [wp-create-nonce]:#wp_create_nonce
 [stripslashes-deep]:#stripslashes_deep
 [add-submenu-page]:#add_submenu_page
@@ -55,6 +56,60 @@
 [add-settings-field]:#add_settings_field
 [add-options-page]:#add_options_page
 [register-setting]:#register_setting
+
+
+### do_settings_sections
+<details>
+  <summary>
+  View Content
+  </summary>
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/do_settings_sections/)
+
+**Parameter**
+
+`do_settings_sections( string $page )`
+
+
+
+```
+
+```
+</details>
+
+[go back :house:][home]
+
+### settings-fields
+<details>
+  <summary>
+  View Content
+  </summary>
+
+**reference**
+- [wordpress](https://developer.wordpress.org/reference/functions/settings_fields/)
+
+**Parameters**
+
+`settings_fields( string $option_group )`
+
+**Options**
+
+```
+$option_group
+(string) (Required) A settings group name. This should match the group name used in register_setting().
+```
+
+**Example**
+
+```php
+echo '<form method="post" action="options.php">';
+settings_fields( 'wpdocs-plugin-settings-group' );
+```
+</details>
+
+[go back :house:][home]
+
 
 
 ### wp_create_nonce

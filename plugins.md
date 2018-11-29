@@ -43,8 +43,13 @@
 
 ## How to
 - [make a basic plugin][basic-plugin]
+- [how to add js files to your plugin][js-plugin]
+- [how to add css files to your plugin][css-plugin]
 - [basic plugin creation][basic-plugin-create]
 
+[css-plugin]:#how-to-add-css-files-to-your-plugin
+[js-plugin]:#how-to-add-js-files-to-your-plugin
+[settings-field]:#settings_fields
 [plugins-url]:#plugins_url
 [basic-plugin-create]:#basic-plugin-creation
 [do-settings-section]:#do_settings_sections
@@ -60,6 +65,54 @@
 [add-settings-field]:#add_settings_field
 [add-options-page]:#add_options_page
 [register-setting]:#register_setting
+
+
+### how to add css files to your plugin
+<details>
+  <summary>
+  View Content
+  </summary>
+
+**reference**
+- [stackoverflow](https://stackoverflow.com/questions/3760222/how-to-include-css-and-jquery-in-my-wordpress-plugin)
+
+```php
+function register_styles(){
+  wp_register_style("icecream",plugins_url("/css/icecream_style.css",__FILE__));
+  wp_enqueue_style("icecream");
+
+
+}
+
+add_action("admin_enqueue_scripts","register_styles");
+
+
+```
+</details>
+
+[go back :house:][home]
+
+
+### how to add js files to your plugin
+<details>
+  <summary>
+  View Content
+  </summary>
+
+  **reference**
+  - [stackoverflow](https://stackoverflow.com/questions/3760222/how-to-include-css-and-jquery-in-my-wordpress-plugin)
+
+```php
+function register_script(){
+
+  wp_enqueue_script("icecream-js",plugins_url("/js/icecream_script.js",__FILE__));
+}
+
+add_action("admin_enqueue_scripts","register_script");
+```
+</details>
+
+[go back :house:][home]
 
 
 
@@ -90,9 +143,179 @@ echo '<img src="' . plugins_url( 'images/wordpress.png', __FILE__ ) . '" > ';
   View Content
   </summary>
 
-```
+1.  create a name of a plugin in the plugins folder and name the folder and file the same
 
 ```
+   mkdir icecream-plugin
+   touch icecream-plugin/icecream-plugin.php
+```
+
+2. inside the file create add the plugin information and the code to prevent people
+  from accessing  it
+
+```php
+/*
+
+Plugin Name: Icecream Plugin
+Plugin URI: https:w.jermaineforbes.com/plugins/icecream_plugin
+Author: Jermaine Forbes
+Description: This is just a basic plugin for wordpress
+Author URI: www.jforbes.site
+License: GPL 2.0+
+Text Domain: icecream_plugin
+*/
+
+
+// exit if file is called directly
+if ( ! defined( 'ABSPATH' ) ) {
+
+	exit;
+
+}
+```
+
+3. Add the code that will be shown in settings page of the plugin, then add the
+action hook to include in the admin menu
+
+```
+
+// This will be the settings page of the plugin
+function display_icecream_page(){
+
+  ?>
+  <div class="wrap">
+    <h2>Something </h2>
+    <form  action="options.php" method="post">
+
+      <?php
+
+        // this will be the hidden fields of the form
+        settings_fields("icecream_plugin");
+
+        //this will show all sections and fields that is going to be in the plugin
+        do_settings_sections("icecream_plugin");
+
+        // this is obviously a submit button
+        submit_button("save the icecream");
+        ?>
+    </form>
+  </div>
+
+  <?php
+}
+
+// this is the function that will add the plugin menu to the admin menu
+function add_icecream_menu(){
+
+  add_menu_page(
+    "Ice Cream Plugin",// this will show up as the title page when you visit the plugin setting page
+    "Ice Cream",// this will show up as the name in the admin menu
+    "manage_options",// I'm pretty sure you're always supposed to add this
+    "icecream_plugin",//This should be the text domain name of the plugin
+    "display_icecream_page", // this is function that is supposed show the setting page
+    "dashicons-lightbulb" // this is the icon that will show up next to the plugin menu name
+
+
+  );
+
+}
+
+
+
+// this is the hook that will add all of this shit to admin page
+add_action("admin_menu", "add_icecream_menu");
+
+```
+
+4. Now, to add fields and sections to the settings page do this
+
+```php
+function add_icecream_settings(){
+
+  add_settings_section(
+    "icecream_section",// this is the id for section
+    "Icecream Section", // This print out the name for the section
+    "icecream_section_cb",// this is a function that will output information at the top of the section
+    "icecream_plugin");// This is for the text domain
+
+  add_settings_field(
+  "icecream_type", // this is the id for the field
+  "Icecream Type", // the name for the field
+   "icecream_type_cb",//this function  will output the html to the form
+   "icecream_plugin",//this is for the text domain
+   "icecream_section",//this is where you will hook the field to the specific section
+   array("label_for" =>"icecream_type","class" => "icecream_type"));//adds classes, that's all you need to know
+
+  add_settings_field(
+    "icecream_weight",
+    "Icecream Weight(kg)",
+    "icecream_weight_cb",
+    "icecream_plugin",
+    "icecream_section");
+
+  add_settings_field(
+    "icecream_date",
+    "When did you eat the Icecream",
+    "icecream_date_cb",
+    "icecream_plugin",
+    "icecream_section");
+
+  register_setting(
+    "icecream_plugin", //I think you're supposed to add the text-domain here
+    "icecream_option");//This is the name of the option that will be saved in the database
+
+}
+
+//hooks all the shit up
+add_action("admin_init","add_icecream_settings");
+```
+
+5. Now you have to add the actual sections/fields for the data
+
+```
+function icecream_section_cb(){
+  echo "This is some expensive icecream";
+}
+
+function icecream_type_cb(){
+
+
+
+  ?>
+  <input type="text" name="icecream_option[type]" value="<?php echo get_option('icecream_option')['type']; ?>">
+
+  <?php
+}
+
+function icecream_weight_cb(){
+  ?>
+    <input type="number" name="icecream_option[weight]" value="<?php echo get_option('icecream_option')['weight']; ?>">
+  <?php
+}
+
+function icecream_date_cb(){
+  ?>
+    <input type="date" name="icecream_option[date]" value="<?php echo get_option('icecream_option')['date']; ?>">
+  <?php
+}
+```
+
+6. Now this is what you do to deactivate and remove data from the database... I think
+
+```php
+// remove options on uninstall
+function icecream_on_uninstall() {
+
+	if ( ! current_user_can( 'activate_plugins' ) ) return;
+
+	delete_option( 'icecream_option' );
+
+}
+register_uninstall_hook( __FILE__, 'icecream_on_uninstall' );
+```
+
+7. And that my friends is the basic way to create plugin
+
 </details>
 
 [go back :house:][home]
@@ -116,7 +339,7 @@ echo '<img src="' . plugins_url( 'images/wordpress.png', __FILE__ ) . '" > ';
 
 [go back :house:][home]
 
-### settings-fields
+### settings_fields
 <details>
   <summary>
   View Content

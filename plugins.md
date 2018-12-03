@@ -39,7 +39,8 @@
 - wp_kses_post
 - wp_update_user
 
-
+## Sanitization
+- [how to sanitize text fields][sanitize-text]
 
 ## How to
 - [make a basic plugin][basic-plugin]
@@ -47,6 +48,7 @@
 - [how to add css files to your plugin][css-plugin]
 - [basic plugin creation][basic-plugin-create]
 
+[sanitize-text]:#how-to-sanitize-text-fields
 [css-plugin]:#how-to-add-css-files-to-your-plugin
 [js-plugin]:#how-to-add-js-files-to-your-plugin
 [settings-field]:#settings_fields
@@ -65,6 +67,50 @@
 [add-settings-field]:#add_settings_field
 [add-options-page]:#add_options_page
 [register-setting]:#register_setting
+
+
+### how to sanitize text fields
+<details>
+  <summary>
+  View Content
+  </summary>
+
+If you are using the **register_setting** function,
+this is how you sanitize the text fields
+
+1. create a function that will validate all the input fields in the form
+
+```php
+
+// the input variable will be the option name of the input
+function validate_icecream($input){
+
+	if(isset($input["type"])){
+		// $input["type"] = sanitize_text_field($input["type"]);
+		$input["type"] = "cherry";
+	}
+	if(isset($input["date"])){
+		$input["date"] = sanitize_text_field($input["date"]);
+
+	}
+	if(isset($input["weight"])){
+		$input["weight"] = sanitize_text_field($input["weight"]);
+	}
+
+//make sure you hit return
+	return $input;
+}
+```
+
+2. now you have to add the function into another function called register_setting
+
+```php
+register_setting("icecream_plugin", "icecream_option",
+array("type"=>"string","sanitize_callback" => "validate_icecream" ));
+```
+</details>
+
+[go back :house:][home]
 
 
 ### how to add css files to your plugin

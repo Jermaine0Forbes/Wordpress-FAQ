@@ -5,7 +5,6 @@
 ## 11/29/18
 
 ###  Things to learn from  wordpress plugin development
-- learn how to sanitize text fields
 -  create a php class to for a plugin
 -  create a submenu in the menu of your custom plugin
 - create a custom post type

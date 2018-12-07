@@ -27,6 +27,7 @@
 - plugin_dir_path
 - [plugins_url][plugins-url]
 - [register_setting][register-setting] 
+- register_uninstall_hook
 - sanitize_text_field
 - selected
 - [settings_fields][settings-field]
